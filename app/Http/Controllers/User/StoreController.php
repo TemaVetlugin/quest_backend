@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\StoreRequest;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 
 class StoreController extends Controller
@@ -18,9 +19,12 @@ class StoreController extends Controller
 
         if($user) return response('Пользователь с таким email-ом уже существует', 401);
 
+        $user['role']=0;
+
         $user = User::create($data);
+
         $token = auth()->tokenById($user->id);
-        return response(['access_token'=>$token]);
+        return response(['access_token'=>$token], Response::HTTP_OK);
     }
 
 }

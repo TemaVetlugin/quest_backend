@@ -3,22 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\User\UserResource;
+use App\Http\Requests\User\PhotoStoreRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
-use Tymon\JWTAuth\JWT;
 
-class GoogleController extends Controller
+class GoogleStoreController extends Controller
 {
-    public function redirectToGoogle()
+    public function __invoke(  Request $request)
     {
-//        dd(11111);
-        return Socialite::driver('google')->redirect();
-    }
-    public function handleGoogleCallback()
-    {
-//        dd(11111);
-        $user = Socialite::driver('google')->user();
+
+        $user = request()->input();
         $user_exists  = User::where('email', $user->email)->first();
         //return redirect('/')->with('message', 'Добро пожаловать на страницу домашнего кабинета!');
         if(!$user_exists) {
@@ -34,7 +30,6 @@ class GoogleController extends Controller
         $credentials['password'] = 'googleauthorizedusergoogleauthorizeduser';
         $token = auth()->attempt($credentials);
         return redirect('/')->with('token', $token);
-//        return view('main.index', compact('token'));
     }
 
 }

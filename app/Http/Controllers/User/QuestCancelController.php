@@ -16,13 +16,6 @@ class QuestCancelController extends Controller
         }
         $user->quests()->detach($quest->id);
         $user->update(['task_id' => null]);
-        $tasks=$quest->tasks;
-        foreach($tasks as $task){
-            $hints=$task->hints;
-            $task['hints']=$hints;
-        }
-        $quest['tasks']=$tasks;
-//        dd($hints);
-        return $quest;
+        return response('Квест отменен', Response::HTTP_OK);
     }
 }

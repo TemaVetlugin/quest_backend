@@ -21,7 +21,7 @@ class PhotoStoreController extends Controller
         }
         $data['photo'] = Storage::disk('public')->put('/photos', $data['photo']);
         $user->update(['photo' => $data['photo']]);
-        return response([]);
+        return response(['Фото добавлено']);
     }
 
 }

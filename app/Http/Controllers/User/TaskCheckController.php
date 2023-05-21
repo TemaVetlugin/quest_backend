@@ -15,7 +15,7 @@ class TaskCheckController extends Controller
         $task_key= $request->input('qrKey');
         $user=auth()->user();
         if($user->task_id==$task_key){
-$message=1;
+$message='Задание доступно';
         }else{
             $message = 'Вы еще не разблокировали это задание';
         }

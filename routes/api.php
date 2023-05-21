@@ -29,11 +29,12 @@ Route::group([
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
-
+    Route::post('/google/login', 'GoogleStoreController');
 
     Route::group(['namespace'=>'User', 'prefix'=>'users'], function(){
         Route::get('/leaders/', 'IndexController');
         Route::post('/', 'StoreController');
+
     });
     Route::group(['namespace'=>'Quest', 'prefix'=>'quests'], function(){
         Route::get('/', 'IndexController');
@@ -85,6 +86,12 @@ Route::group([
             Route::post('/quit', 'UserDeleteController');
             Route::get('/{team}', 'ShowController');
             Route::get('admin/{team}', 'AdminController');
+
+            Route::group(['namespace'=>'Quest', 'prefix'=>'quest'], function(){
+                Route::get('/{quest}', 'QuestShowController');
+                Route::post('/done', 'QuestDoneController');
+                Route::get('/cancel/{quest}', 'QuestCancelController');
+            });
         });
     });
 

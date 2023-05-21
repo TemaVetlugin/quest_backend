@@ -5,6 +5,7 @@
     <input v-model="password" type="password" class="form-control mb-3" placeholder="password">
     <input @click.prevent="this.loginJwt" type="submit" class="btn btn-primary mb-3" value="send">
     <input @click.prevent="this.loginGoogle" type="submit" class="btn btn-primary mb-3" value="google">
+    <input @click.prevent="this.loginGoogleTest" type="submit" class="btn btn-primary mb-3" value="googleeeee">
 
   </div>
 </template>
@@ -31,6 +32,10 @@ loginJwt(){
 },
 loginGoogle(){
     window.location.href = '/google'
+},
+loginGoogleTest(){
+    var data={'name':'gggg', 'not name': 'hhrhr'}
+    axios.post('/api/auth/google/login', data)
 }
 }
 

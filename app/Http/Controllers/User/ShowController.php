@@ -12,11 +12,14 @@ class ShowController extends Controller
 {
     public function __invoke(Quest $quest)
     {
-        $user_id=auth()->user();
+        $user=auth()->user();
         $user = User::with(['quests'=>function($query){
-            $query->withPivot(['mode'])->orderBy('id');
-        }])->find($user_id);
-        $user[0]['team'] = Team::where('id', $user[0]->team_id)->first();
+            $query->withPivot(['mode', 'time'])->orderBy('id');
+        }])->find($user->id);
+        $team = Team::where('id', $user->team_id)->first();
+        $team_members=User::where('team_id', $user->team_id)->get();
+        $team['users']=$team_members;
+        $user['team']=$team;
         return $user;
     }
 }

@@ -12,4 +12,7 @@ class Team extends Model
     public function users(){
         return $this->hasMany(User::class, 'team_id','id');
     }
+    public function quests(){
+        return $this->belongsToMany(Quest::class, 'team_quests','team_id', 'quest_id');
+    }
 }
