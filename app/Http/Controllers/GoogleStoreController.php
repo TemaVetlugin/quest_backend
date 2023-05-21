@@ -29,7 +29,7 @@ class GoogleStoreController extends Controller
         $credentials['email'] = $user->email;
         $credentials['password'] = 'googleauthorizedusergoogleauthorizeduser';
         $token = auth()->attempt($credentials);
-        return redirect('/')->with('token', $token);
+        return  $token;
     }
 
 }
