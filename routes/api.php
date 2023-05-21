@@ -45,7 +45,7 @@ Route::group([
     //authorized
     Route::group(['middleware'=>'jwt.auth'], function(){
         Route::group(['namespace'=>'Quest', 'prefix'=>'quests'], function(){
-//            Route::get('/', 'IndexController');
+            Route::get('/admin', 'IndexAdminController');
 
             Route::post('/', 'StoreController');
         });

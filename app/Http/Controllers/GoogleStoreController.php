@@ -15,18 +15,19 @@ class GoogleStoreController extends Controller
     {
 
         $user = request()->input();
-        $user_exists  = User::where('email', $user->email)->first();
+//        dd($user);
+        $user_exists  = User::where('email', $user['email'])->first();
         //return redirect('/')->with('message', 'Добро пожаловать на страницу домашнего кабинета!');
         if(!$user_exists) {
-            $data['name'] = $user->name;
-            $data['email'] = $user->email;
+            $data['name'] = $user['name'];
+            $data['email'] = $user['email'];
             $data['password'] = $hashedPassword = bcrypt('googleauthorizedusergoogleauthorizeduser');
-            $data['photo'] = $user->avatar;
+            $data['photo'] = $user['picture'];
             $data['role'] = 0;
             $new_user = User::create($data);
 
         }
-        $credentials['email'] = $user->email;
+        $credentials['email'] = $user['email'];
         $credentials['password'] = 'googleauthorizedusergoogleauthorizeduser';
         $token = auth()->attempt($credentials);
         return  $token;

@@ -7,7 +7,8 @@
             <input v-on:change="onFileSelected" class="form-control w-75" type="file" id="formFile">
         </div>
         <a href="#" class="btn btn-success mb-5" @click.prevent="addPhoto">Добавить</a><br>
-        <a href="#" class="btn btn-success mb-5" @click.prevent="getQuests">Получить список всех квестов</a><br>
+        <a href="#" class="btn btn-success mb-5" @click.prevent="getQuests">Получить список всех доступных квестов</a><br>
+        <a href="#" class="btn btn-success mb-5" @click.prevent="getAllQuests">Получить список всех квестов (админ)</a><br>
         <a href="#" class="btn btn-success mb-5" @click.prevent="getUser">Получить Данные о пользователе</a><br>
 
     </div>
@@ -37,6 +38,16 @@ export default {
         },
         getQuests() {
             axios.get('/api/auth/quests')
+                .then(res => {
+                    this.quests = res.data.data
+                    console.log(this.quests);
+                })
+                .catch(err => {
+                    console.log(err.response);
+                })
+        },
+        getAllQuests() {
+            api.get('/api/auth/quests/admin')
                 .then(res => {
                     this.quests = res.data.data
                     console.log(this.quests);
