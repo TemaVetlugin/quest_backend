@@ -12,7 +12,8 @@ class UpdateController extends Controller
 {
     public function __invoke(Request $request, Quest $quest)
     {
-        $data=$request->input();
+        $dataQuest=$request->input('quest');
+        $data=json_decode($dataQuest, true);
         $quest->update($data);
         return response('Квест изменен', Response::HTTP_OK);
     }

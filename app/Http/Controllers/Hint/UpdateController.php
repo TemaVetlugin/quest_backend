@@ -12,7 +12,8 @@ class UpdateController extends Controller
 {
     public function __invoke(Request $request, Hint $hint)
     {
-        $data=$request->input();
+        $dataHint=$request->input('hint');
+        $data=json_decode($dataHint, true);
         $hint->update($data);
         return response('Подсказка изменена', Response::HTTP_OK);
     }
