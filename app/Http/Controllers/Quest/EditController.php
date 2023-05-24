@@ -1,19 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Post;
+namespace App\Http\Controllers\Quest;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Post;
-use App\Models\Tag;
+use App\Models\Quest;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
-class EditController extends BaseController
+class EditController extends Controller
 {
-    public function __invoke(Post $post)
+    public function __invoke(Quest $quest)
     {
-        $categories=Category::all();
-        $tags=Tag::all();
-        return view('admin.post.edit', compact('post','categories','tags'));
+        return response($quest, Response::HTTP_OK);
     }
 }

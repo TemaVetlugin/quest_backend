@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Quest;
+namespace App\Http\Controllers\Task;
 
 use App\Http\Controllers\Controller;
-use App\Models\Quest;
-use Illuminate\Http\Request;
+use App\Models\Task;
 use Illuminate\Http\Response;
 
 class EditController extends Controller
 {
-    public function __invoke(Quest $quest)
+    public function __invoke(Task $task)
     {
-        return response($quest, Response::HTTP_OK);
+        return response($task, Response::HTTP_OK);
     }
 }

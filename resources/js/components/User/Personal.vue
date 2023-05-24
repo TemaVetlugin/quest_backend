@@ -11,6 +11,8 @@
         <a href="#" class="btn btn-success mb-5" @click.prevent="getAllQuests">Получить список всех квестов (админ)</a><br>
         <a href="#" class="btn btn-success mb-5" @click.prevent="getUser">Получить Данные о пользователе</a><br>
 
+        <a href="#" class="btn btn-success mb-5" @click.prevent="hideQuest">Скрыть квест</a><br>
+
     </div>
 </template>
 
@@ -47,7 +49,7 @@ export default {
                 })
         },
         getAllQuests() {
-            api.get('/api/auth/quests/admin')
+            api.get('/api/auth/admin/quests')
                 .then(res => {
                     this.quests = res.data.data
                     console.log(this.quests);
@@ -59,6 +61,15 @@ export default {
 
         getUser() {
             api.get('/api/auth/users')
+                .then(res => {
+                    console.log(res);
+                })
+                .catch(err => {
+                    console.log(err.response);
+                })
+        },
+        hideQuest() {
+            api.get('/api/auth/admin/quests/hide/6')
                 .then(res => {
                     console.log(res);
                 })

@@ -45,13 +45,15 @@ Route::group([
     //authorized
     Route::group(['middleware'=>'jwt.auth'], function(){
         Route::group(['namespace'=>'Quest', 'prefix'=>'quests'], function(){
-            Route::get('/admin', 'IndexAdminController');
-
             Route::post('/', 'StoreController');
+            Route::get('/{quest}/edit', 'EditController');
+            Route::patch('/{quest}', 'UpdateController');
         });
         Route::group(['namespace'=>'Task', 'prefix'=>'tasks'], function(){
 //            Route::get('/', 'IndexController');
             Route::post('/', 'StoreController');
+            Route::get('/{task}/edit', 'EditController');
+            Route::patch('/{task}', 'UpdateController');
         });
         Route::group(['namespace'=>'Hint', 'prefix'=>'hints'], function(){
 //            Route::get('/', 'IndexController');
@@ -86,11 +88,19 @@ Route::group([
             Route::post('/quit', 'UserDeleteController');
             Route::get('/{team}', 'ShowController');
             Route::get('admin/{team}', 'AdminController');
+            Route::get('admin/change/{user}', 'AdminChangeController');
 
             Route::group(['namespace'=>'Quest', 'prefix'=>'quest'], function(){
                 Route::get('/{quest}', 'QuestShowController');
                 Route::post('/done', 'QuestDoneController');
                 Route::get('/cancel/{quest}', 'QuestCancelController');
+            });
+        });
+        Route::group(['namespace'=>'Admin', 'prefix'=>'admin'], function(){
+            Route::group(['namespace'=>'Quest', 'prefix'=>'quests'], function(){
+                Route::get('/', 'IndexAdminController');
+                Route::get('/hide/{quest}', 'HideController');
+                Route::get('/open/{quest}', 'OpenController');
             });
         });
     });

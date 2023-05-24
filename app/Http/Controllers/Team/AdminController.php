@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Team;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class AdminController extends Controller
 {
@@ -18,6 +19,6 @@ class AdminController extends Controller
         else{
             $message=false;
         }
-        return $message;
+        return response($message, Response::HTTP_OK);
     }
 }

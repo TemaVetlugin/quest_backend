@@ -6,12 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Quest\QuestResource;
 use App\Models\Quest;
 
-class IndexAdminController extends Controller
+class HideController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Quest $quest)
     {
-        $quests=Quest::orderBy('id', 'DESC')->get();
-        return QuestResource::collection($quests);
+        $quest->update(['available'=> 0]);
+        return response('Квест скрыт');
     }
 
 }

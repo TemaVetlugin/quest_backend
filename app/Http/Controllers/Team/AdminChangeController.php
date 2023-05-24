@@ -5,19 +5,24 @@ namespace App\Http\Controllers\Team;
 use App\Http\Controllers\Controller;
 use App\Models\Team;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
-class AdminController extends Controller
+class AdminChangeController extends Controller
 {
-    public function __invoke(Team $team)
+    public function __invoke(User $user)
     {
-        $user = auth()->user();
-        if($team->creator_id===$user->id){
-            $message=true;
+        $admin = auth()->user();
+        $team = Team::where('creator_id', $admin->id)->first();
+        if(!$team) {
+            return response('Вы не являетесь капитаном команды', Response::HTTP_OK);
         }
-        else{
-            $message=false;
+        if($user->team_id!==$team->id){
+
+            return response($team, Response::HTTP_OK);
         }
-        return $message;
+        $team->update(['creator_id' => $user->id]);
+        return response('Капитан команды изменен', Response::HTTP_OK);
     }
 }

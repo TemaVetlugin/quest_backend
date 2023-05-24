@@ -8,6 +8,8 @@
         <a href="#" class="d-block btn btn-success mb-5 w-25" @click.prevent="isAdmin">Являюсь админом</a>
         <input v-model="userId" type="text" class="form-control mt-3 mb-3" placeholder="id участника">
         <a href="#" class="d-block btn btn-success mb-5 w-25" @click.prevent="deleteUser">Удалить участника команды</a>
+        <input v-model="newUserId" type="text" class="form-control mt-3 mb-3" placeholder="id нового капитана">
+        <a href="#" class="d-block btn btn-success mb-5 w-25" @click.prevent="changeUser">Сменить капитана</a>
         <input v-model="team" type="text" class="form-control mt-3 mb-3" placeholder="id команды">
         <a href="#" class="d-block btn btn-success mb-5 w-25" @click.prevent="getTeam">Данные команды</a>
         <a href="#" class="d-block btn btn-danger mb-5 w-25" @click.prevent="quitTeam">Выйти из команды </a>
@@ -28,6 +30,7 @@ export default {
             teamId: null,
             team: null,
             userId: null,
+            newUserId: null,
         }
     },
 
@@ -72,6 +75,15 @@ export default {
         },
         deleteUser() {
             api.post(`/api/auth/teams/quit`, {userId: this.userId})
+                .then(res => {
+                    console.log(res);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        },
+        changeUser() {
+            api.get(`/api/auth/teams/admin/change/${this.newUserId}`)
                 .then(res => {
                     console.log(res);
                 })

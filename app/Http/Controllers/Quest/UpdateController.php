@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Post;
+namespace App\Http\Controllers\Quest;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Post\UpdateRequest;
-use App\Models\Post;
+use App\Models\Quest;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
-class UpdateController extends BaseController
+class UpdateController extends Controller
 {
-    public function __invoke(UpdateRequest $request, Post $post)
+    public function __invoke(Request $request, Quest $quest)
     {
-        $data=$request->validated();
-        $post=$this->service->update($data, $post);
-        return view('admin.post.show', compact('post'));
+        $data=$request->input();
+        $quest->update($data);
+        return response('Квест изменен', Response::HTTP_OK);
     }
 }

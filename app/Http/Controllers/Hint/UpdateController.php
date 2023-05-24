@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Quest;
+namespace App\Http\Controllers\Hint;
 
 use App\Http\Controllers\Controller;
-use App\Models\Quest;
+use App\Models\Hint;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
 class UpdateController extends Controller
 {
-    public function __invoke(Request $request, Quest $quest)
+    public function __invoke(Request $request, Hint $hint)
     {
         $data=$request->input();
-        $quest->update($data);
-        return response('Квест изменен', Response::HTTP_OK);
+        $hint->update($data);
+        return response('Подсказка изменена', Response::HTTP_OK);
     }
 }
