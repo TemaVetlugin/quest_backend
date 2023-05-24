@@ -19,7 +19,8 @@ class StoreController extends Controller
 
         if($user) return response('Пользователь с таким email-ом уже существует', 401);
 
-        $user['role']=0;
+        $data['role']=0;
+        $data['scores']=0;
 
         $user = User::create($data);
 

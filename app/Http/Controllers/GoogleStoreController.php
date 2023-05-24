@@ -24,6 +24,7 @@ class GoogleStoreController extends Controller
             $data['password'] = $hashedPassword = bcrypt('googleauthorizedusergoogleauthorizeduser');
             $data['photo'] = $user['picture'];
             $data['role'] = 0;
+            $data['scores'] = 0;
             $new_user = User::create($data);
 
         }

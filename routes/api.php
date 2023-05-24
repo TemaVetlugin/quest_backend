@@ -96,12 +96,26 @@ Route::group([
                 Route::get('/cancel/{quest}', 'QuestCancelController');
             });
         });
+
         Route::group(['namespace'=>'Admin', 'prefix'=>'admin'], function(){
             Route::group(['namespace'=>'Quest', 'prefix'=>'quests'], function(){
                 Route::get('/', 'IndexAdminController');
                 Route::get('/hide/{quest}', 'HideController');
                 Route::get('/open/{quest}', 'OpenController');
             });
+        });
+
+        Route::group(['namespace'=>'News', 'prefix'=>'news'], function(){
+            Route::post('/', 'StoreController');
+            Route::get('/{news}/edit', 'EditController');
+            Route::patch('/{news}', 'UpdateController');
+            Route::delete('/{news}', 'DeleteController');
+        });
+        Route::group(['namespace'=>'Question', 'prefix'=>'questions'], function(){
+            Route::post('/', 'StoreController');
+            Route::get('/{question}/edit', 'EditController');
+            Route::patch('/{question}', 'UpdateController');
+            Route::delete('/{question}', 'DeleteController');
         });
     });
 
