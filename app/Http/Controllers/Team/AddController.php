@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class AdminChangeController extends Controller
+class AddController extends Controller
 {
     public function __invoke(Request $request)
     {

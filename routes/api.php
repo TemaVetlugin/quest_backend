@@ -88,7 +88,7 @@ Route::group([
             Route::post('/quit', 'UserDeleteController');
             Route::get('/{team}', 'ShowController');
             Route::get('admin/{team}', 'AdminController');
-            Route::get('admin/change/{user}', 'AdminChangeController');
+            Route::post('/add', 'AddController');
 
             Route::group(['namespace'=>'Quest', 'prefix'=>'quest'], function(){
                 Route::get('/{quest}', 'QuestShowController');
@@ -102,6 +102,11 @@ Route::group([
                 Route::get('/', 'IndexAdminController');
                 Route::get('/hide/{quest}', 'HideController');
                 Route::get('/open/{quest}', 'OpenController');
+            });
+            Route::group(['namespace' => 'Picture', 'prefix' => 'pictures'], function () {
+                Route::post('/', 'StoreController');
+                Route::delete('/{picture}', 'DeleteController');
+                Route::get('/', 'IndexController');
             });
         });
 

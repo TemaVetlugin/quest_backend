@@ -13,6 +13,15 @@
 
         <a href="#" class="btn btn-success mb-5" @click.prevent="hideQuest">Скрыть квест</a><br>
 
+        <div class="mb-3">
+            <h4 class="text-dark">Добавить стандартное изображение в профиль</h4>
+            <input v-on:change="onFileSelected" class="form-control w-75" type="file" id="formFile">
+        </div>
+        <a href="#" class="btn btn-success mb-5" @click.prevent="addDefaultPhoto">Добавить</a><br>
+
+        <input v-model="defaultPhoto" type="email" class="form-control mb-3" placeholder="Название файла">
+        <a href="#" class="btn btn-success mb-5" @click.prevent="chooseDefaultPhoto">Добавить</a><br>
+
     </div>
 </template>
 
@@ -23,6 +32,7 @@ export default {
         return {
             photo: null,
             quests:null,
+            defaultPhoto:null,
         }
     },
     methods: {
@@ -36,6 +46,23 @@ export default {
                     }
                 })
                 .then(res => {
+                    console.log(res);
+                })
+        },
+        addDefaultPhoto() {
+            // let formData = new FormData();
+            // formData.append('file', this.photo);
+            api.get('/api/auth/admin/pictures/')
+                .then(res => {
+                    console.log(res);
+                })
+        },
+        chooseDefaultPhoto() {
+            // let formData = new FormData();
+            // formData.append('file', this.photo);
+            api.post('/api/auth/admin/pictures/', {file: this.defaultPhoto})
+                .then(res => {
+                    console.log(res);
                 })
         },
         getQuests() {

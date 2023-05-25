@@ -17,6 +17,11 @@ class UserDeleteController extends Controller
 
         $user_id = $request->input('userId');
         $user  = User::where('id', $user_id)->first();
+        $admin = auth()->user();
+        $team = Team::where('creator_id', $admin->id)->first();
+        if (!$team) {
+            return response('Вы не являетесь капитаном команды', Response::HTTP_OK);
+        }
         if($user->team_id===null){
             $message='У пользователя нет команды';
         }

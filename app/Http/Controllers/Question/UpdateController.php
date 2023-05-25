@@ -12,7 +12,8 @@ class UpdateController extends Controller
 {
     public function __invoke(Request $request, Question $question)
     {
-        $data=$request->input();
+        $dataQuestion=$request->input('question');
+        $data=json_decode($dataQuestion, true);
         $question->update($data);
         return response('Вопрос изменен', Response::HTTP_OK);
     }
