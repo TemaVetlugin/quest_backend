@@ -15,11 +15,15 @@ class PhotoStoreController extends Controller
         $data=$request->validated();
         $user = auth()->user();
 //        dd($user['photo']);
-        if (Storage::disk('public')->exists($user['photo'])) {
-            // Удаляем файл
-            Storage::disk('public')->delete($user['photo']);
+        if(stripos($user['photo'], 'https') === false) {
+//            return '11111';
+            if (Storage::disk('public')->exists($user['photo'])) {
+                // Удаляем файл
+                Storage::disk('public')->delete($user['photo']);
 
+            }
         }
+//        return '1222222';
         $data['photo'] = Storage::disk('public')->put('/photos', $data['photo']);
         $user->update(['photo' => $data['photo']]);
         return response('Фото добавлено', Response::HTTP_OK);

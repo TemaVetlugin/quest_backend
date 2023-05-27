@@ -43,7 +43,7 @@ Route::group([
 
 
     //authorized
-    Route::group(['middleware'=>'jwt.auth'], function(){
+    Route::group(['middleware'=>['jwt.auth','block']], function(){
         Route::group(['namespace'=>'Quest', 'prefix'=>'quests'], function(){
             Route::post('/', 'StoreController');
             Route::get('/{quest}/edit', 'EditController');
@@ -76,6 +76,7 @@ Route::group([
 
             Route::group([ 'prefix'=>'photo'], function(){
             Route::post('/', 'PhotoStoreController');
+            Route::post('/choose', 'PhotoChooseController');
 
         });
         });
@@ -106,6 +107,10 @@ Route::group([
             Route::group(['namespace' => 'Picture', 'prefix' => 'pictures'], function () {
                 Route::post('/', 'StoreController');
                 Route::delete('/{picture}', 'DeleteController');
+                Route::get('/', 'IndexController');
+            });
+            Route::group(['namespace' => 'Photo', 'prefix' => 'photos'], function () {
+                Route::delete('/{user}', 'DeleteController');
                 Route::get('/', 'IndexController');
             });
         });

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\JWT;
 
 class AuthController extends Controller
@@ -27,7 +30,11 @@ class AuthController extends Controller
     public function login()
     {
         $credentials = request(['email', 'password']);
+        $user = User::where(request(['email']))->first();
 
+        if($user && $user->access===0){
+            return response()->json(['error' => 'Ваш аккаунт получил бан'], 401);
+        }
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }

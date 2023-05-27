@@ -25,7 +25,7 @@ const api = axios.create();
         return config
     }, error=>{
       if(error.response.data.message==="Token has expired"){
-        return axios.post('api/auth/refresh', {}, {
+        return axios.post('/api/auth/refresh', {}, {
           headers: {
             "authorization" : `Bearer ${localStorage.getItem('access_token')}`
           }

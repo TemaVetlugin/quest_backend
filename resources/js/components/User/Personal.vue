@@ -22,6 +22,10 @@
         <input v-model="defaultPhoto" type="email" class="form-control mb-3" placeholder="Название файла">
         <a href="#" class="btn btn-success mb-5" @click.prevent="chooseDefaultPhoto">Добавить</a><br>
 
+        <input v-model="defaultPhotoUser" type="email" class="form-control mb-3" placeholder="айди пользователя">
+        <a href="#" class="btn btn-success mb-5" @click.prevent="deletePhoto">Удалить аву</a><br>
+        <a href="#" class="btn btn-success mb-5" @click.prevent="showPhoto">Все загруженные пользователями фото</a><br>
+
     </div>
 </template>
 
@@ -33,6 +37,7 @@ export default {
             photo: null,
             quests:null,
             defaultPhoto:null,
+            defaultPhotoUser:null,
         }
     },
     methods: {
@@ -60,7 +65,7 @@ export default {
         chooseDefaultPhoto() {
             // let formData = new FormData();
             // formData.append('file', this.photo);
-            api.post('/api/auth/admin/pictures/', {file: this.defaultPhoto})
+            api.post('/api/auth/users/photo/choose', {photo: this.defaultPhoto})
                 .then(res => {
                     console.log(res);
                 })
@@ -99,6 +104,26 @@ export default {
             api.get('/api/auth/admin/quests/hide/6')
                 .then(res => {
                     console.log(res);
+                })
+                .catch(err => {
+                    console.log(err.response);
+                })
+        },
+        showPhoto(){
+            api.get('/api/auth/admin/photos')
+                .then(res => {
+                    this.quests = res.data.data
+                    console.log(this.quests);
+                })
+                .catch(err => {
+                    console.log(err.response);
+                })
+        },
+        deletePhoto(){
+            api.delete(`/api/auth/admin/photos/${this.defaultPhotoUser}`)
+                .then(res => {
+                    this.quests = res.data
+                    console.log(this.quests);
                 })
                 .catch(err => {
                     console.log(err.response);

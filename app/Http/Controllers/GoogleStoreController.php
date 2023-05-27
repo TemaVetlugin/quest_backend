@@ -17,6 +17,10 @@ class GoogleStoreController extends Controller
         $user = request()->input();
 //        dd($user);
         $user_exists  = User::where('email', $user['email'])->first();
+        if ($user_exists && $user_exists->access===0) {
+            // Если пользователь не аутентифицирован, выполняем редирект на маршрут API
+            return response( 'Ваш аккаунт заблокирован', 401);
+        }
         //return redirect('/')->with('message', 'Добро пожаловать на страницу домашнего кабинета!');
         if(!$user_exists) {
             $data['name'] = $user['name'];
