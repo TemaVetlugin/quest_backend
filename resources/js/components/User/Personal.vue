@@ -26,6 +26,14 @@
         <a href="#" class="btn btn-success mb-5" @click.prevent="deletePhoto">Удалить аву</a><br>
         <a href="#" class="btn btn-success mb-5" @click.prevent="showPhoto">Все загруженные пользователями фото</a><br>
 
+
+
+        <input v-model="news" type="email" class="form-control mb-3" placeholder="контент новости">
+        <div class="mb-3">
+            <h4 class="text-dark">Добавить стандартное изображение новости</h4>
+            <input v-on:change="onFileSelected" class="form-control w-75" type="file" id="formFile">
+        </div>
+        <a href="#" class="btn btn-success mb-5" @click.prevent="addNews">Добавить</a><br>
     </div>
 </template>
 
@@ -128,6 +136,24 @@ export default {
                 .catch(err => {
                     console.log(err.response);
                 })
+        },
+
+        addNews() {
+
+            const formData = new FormData();
+            formData.append(`content`, JSON.stringify(this.news));
+            formData.append(`file`, this.photo);
+            api.post('/api/auth/news', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then(res => {
+                console.log(res);
+            })
+                .catch(err => {
+                    console.log(err.response);
+                })
+
         },
 
         onFileSelected(event) {
