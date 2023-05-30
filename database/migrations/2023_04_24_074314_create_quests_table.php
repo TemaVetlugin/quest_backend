@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('title_start')->nullable();
             $table->string('text_start')->nullable();
             $table->string('file_start')->nullable();
-
             $table->string('title');
             $table->string('time')->nullable();
             $table->string('path')->nullable();
