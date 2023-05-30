@@ -13,12 +13,18 @@ return new class extends Migration
     {
         Schema::create('quests', function (Blueprint $table) {
             $table->id();
+            $table->string('title_start')->nullable();
+            $table->string('text_start')->nullable();
+            $table->string('file_start')->nullable();
+
             $table->string('title');
-            $table->string('purpose')->nullable();
             $table->string('time')->nullable();
-            $table->string('length')->nullable();
-            $table->string('description')->nullable();
-            $table->string('start_info')->nullable();
+            $table->string('path')->nullable();
+            $table->string('text')->nullable();
+            $table->string('file_main')->nullable();
+            $table->string('title_end')->nullable();
+            $table->string('text_end')->nullable();
+            $table->string('file_end')->nullable();
             $table->timestamps();
         });
     }
