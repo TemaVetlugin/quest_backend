@@ -10,6 +10,8 @@ class EditController extends Controller
 {
     public function __invoke(Task $task)
     {
+        $categories=$task->categories;
+        $task['categories']=$categories;
         return response($task, Response::HTTP_OK);
     }
 }

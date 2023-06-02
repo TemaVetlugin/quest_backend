@@ -55,9 +55,11 @@ Route::group([
             Route::get('/{task}/edit', 'EditController');
             Route::patch('/{task}', 'UpdateController');
         });
-        Route::group(['namespace'=>'Category', 'prefix'=>'hints'], function(){
+        Route::group(['namespace'=>'Category', 'prefix'=>'categories'], function(){
 //            Route::get('/', 'IndexController');
             Route::post('/', 'StoreController');
+            Route::get('/{task}/edit', 'EditController');
+            Route::post('/update', 'UpdateController');
         });
         Route::group(['namespace'=>'User', 'prefix'=>'users'], function(){
             Route::get('/', 'ShowController');
