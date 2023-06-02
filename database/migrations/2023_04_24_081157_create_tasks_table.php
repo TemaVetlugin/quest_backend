@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('quest_id');
-            $table->string('start')->nullable();
             $table->string('address')->nullable();
-            $table->string('question');
-            $table->string('answer');
+            $table->string('time')->nullable();
+            $table->string('title')->nullable();
+            $table->string('text')->nullable();
             $table->string('file')->nullable();
-            $table->string('scores');
+            $table->string('hint1')->nullable();
+            $table->string('hint2')->nullable();
+            $table->string('hint3')->nullable();
             $table->timestamps();
 
             $table->index('quest_id', 'task_quest_idx');

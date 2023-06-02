@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Hint;
+namespace App\Http\Controllers\Category;
 
-use App\Models\Hint;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -11,9 +11,9 @@ class StoreController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $hintsData = $request->input('hints');
-        foreach ($hintsData as $hintData) {
-            $new_hint=Hint::create($hintData);
+        $categoriesData = $request->input('categories');
+        foreach ($categoriesData as $categoryData) {
+            $new_category=Category::create($categoryData);
         }
         return response([]);
     }

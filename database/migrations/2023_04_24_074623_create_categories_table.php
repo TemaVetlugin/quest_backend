@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hints', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('task_id');
-            $table->string('title')->nullable();
-            $table->string('description')->nullable();
-            $table->string('scores');
-            $table->timestamps();
+            $table->string('time')->nullable();
+            $table->unsignedBigInteger('scores');
 
-            $table->index('task_id', 'hint_task_idx');
-            $table->foreign('task_id','hint_task_idx')->on('tasks')->references('id');
+            $table->index('task_id', 'category_task_idx');
+            $table->foreign('task_id','category_task_idx')->on('tasks')->references('id');
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hints');
+        Schema::dropIfExists('categories');
     }
 };

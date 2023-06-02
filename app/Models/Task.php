@@ -10,7 +10,7 @@ class Task extends Model
     use HasFactory;
     protected $guarded = false;
 
-    public function hints(){
-        return $this->hasMany(Hint::class, 'task_id','id');
+    public function categories(){
+        return $this->hasMany(Category::class, 'task_id','id');
     }
 }

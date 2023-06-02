@@ -371,8 +371,8 @@ class ComposerStaticInit0b80911d6ef2578b64bd4c346ffa5acd
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -617,12 +617,12 @@ class ComposerStaticInit0b80911d6ef2578b64bd4c346ffa5acd
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
+        'App\\Http\\Controllers\\Category\\EditController' => __DIR__ . '/../..' . '/app/Http/Controllers/Category/EditController.php',
+        'App\\Http\\Controllers\\Category\\StoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/Category/StoreController.php',
+        'App\\Http\\Controllers\\Category\\UpdateController' => __DIR__ . '/../..' . '/app/Http/Controllers/Category/UpdateController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\GoogleController' => __DIR__ . '/../..' . '/app/Http/Controllers/GoogleController.php',
         'App\\Http\\Controllers\\GoogleStoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/GoogleStoreController.php',
-        'App\\Http\\Controllers\\Hint\\EditController' => __DIR__ . '/../..' . '/app/Http/Controllers/Hint/EditController.php',
-        'App\\Http\\Controllers\\Hint\\StoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/Hint/StoreController.php',
-        'App\\Http\\Controllers\\Hint\\UpdateController' => __DIR__ . '/../..' . '/app/Http/Controllers/Hint/UpdateController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/IndexController.php',
         'App\\Http\\Controllers\\News\\DeleteController' => __DIR__ . '/../..' . '/app/Http/Controllers/News/DeleteController.php',
@@ -688,8 +688,8 @@ class ComposerStaticInit0b80911d6ef2578b64bd4c346ffa5acd
         'App\\Http\\Resources\\Picture\\PictureResource' => __DIR__ . '/../..' . '/app/Http/Resources/Picture/PictureResource.php',
         'App\\Http\\Resources\\Quest\\QuestResource' => __DIR__ . '/../..' . '/app/Http/Resources/Quest/QuestResource.php',
         'App\\Http\\Resources\\User\\UserResource' => __DIR__ . '/../..' . '/app/Http/Resources/User/UserResource.php',
+        'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Fruit' => __DIR__ . '/../..' . '/app/Models/Fruit.php',
-        'App\\Models\\Hint' => __DIR__ . '/../..' . '/app/Models/Hint.php',
         'App\\Models\\Message' => __DIR__ . '/../..' . '/app/Models/Message.php',
         'App\\Models\\News' => __DIR__ . '/../..' . '/app/Models/News.php',
         'App\\Models\\Picture' => __DIR__ . '/../..' . '/app/Models/Picture.php',

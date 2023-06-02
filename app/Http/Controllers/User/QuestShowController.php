@@ -20,11 +20,11 @@ class QuestShowController extends Controller
         $user->quests()->attach($quest->id, ['mode' => 0]);
         $tasks=$quest->tasks;
         foreach($tasks as $task){
-            $hints=$task->hints;
-            $task['hints']=$hints;
+            $categories=$task->categories;
+            $task['categories']=$categories;
         }
         $quest['tasks']=$tasks;
-//        dd($hints);
+//        dd($categories);
         return $quest;
     }
 }

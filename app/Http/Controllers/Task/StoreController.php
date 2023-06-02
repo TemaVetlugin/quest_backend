@@ -16,7 +16,6 @@ use App\Http\Requests\Task\StoreRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Endroid\QrCode\Response\QrCodeResponse;
 
 class StoreController extends Controller
 {

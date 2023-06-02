@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Storage;
 
 class UpdateController extends Controller
 {
+
+
     public function __invoke(Request $request, Quest $quest)
     {
         $questData = $request->input('content');
