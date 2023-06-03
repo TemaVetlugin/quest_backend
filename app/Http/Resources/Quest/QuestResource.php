@@ -18,7 +18,9 @@ class QuestResource extends JsonResource
             'id'=>$this->id,
             'title'=>$this->title,
             'time'=>$this->time,
-            'description'=>$this->description,
+            'path'=>$this->path,
+            'text'=>$this->text,
+            'file_main'=>$this->file_main,
         ];
     }
 }
