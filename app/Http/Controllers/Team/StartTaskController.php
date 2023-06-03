@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
 class StartTaskController extends Controller
@@ -17,10 +18,10 @@ class StartTaskController extends Controller
         $team_id=$user->team_id;
         if($team_id) {
             User::where(['team_id' => $team_id])->update(['task_id' => $task_key]);
-            return response(['Новое задание']);
+            return response('Новое задание', Response::HTTP_OK);
         }
         else{
-            return response(['Вы не состоите в команде']);
+            return response('Вы не состоите в команде', Response::HTTP_OK);
         }
     }
 

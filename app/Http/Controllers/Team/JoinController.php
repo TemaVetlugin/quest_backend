@@ -31,9 +31,9 @@ class JoinController extends Controller
                 $user->update(['team_id' => $team->id]);
             }
         } else {
-            return 'Такой команды не существует';
+            return response('Такой команды не существует', Response::HTTP_OK);
         }
-        return 'Вы присоединились к команде';
+        return response('Вы присоединились к команде', Response::HTTP_OK);
     }
 
 }

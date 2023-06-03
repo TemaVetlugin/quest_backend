@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\PhotoStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
 class QuestDoneController extends Controller
@@ -20,7 +21,7 @@ class QuestDoneController extends Controller
         $user->update(['scores' => $scores]);
         $user->quests()->updateExistingPivot($quest_id, ['mode' => 1, 'time'=>$time]);
 //        dd($hints);
-        return response(['Квест пройден']);
+        return response('Квест пройден',Response::HTTP_OK);
     }
 
 }

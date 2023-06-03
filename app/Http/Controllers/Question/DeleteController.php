@@ -12,6 +12,6 @@ class DeleteController extends Controller
     public function __invoke( Question $question)
     {
         $question->delete();
-        return response('Новость удалена', Response::HTTP_OK);
+        return response('Вопрос удален', Response::HTTP_OK);
     }
 }

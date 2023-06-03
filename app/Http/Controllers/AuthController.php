@@ -36,7 +36,7 @@ class AuthController extends Controller
             return response()->json(['error' => 'Ваш аккаунт получил бан'], 401);
         }
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'Пользователя с таким логином и паролем не существует'], 401);
         }
 
         return $this->respondWithToken($token);

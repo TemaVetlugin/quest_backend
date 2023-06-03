@@ -75,12 +75,17 @@ class StoreController extends Controller
         'twat',
         'wanker', 'whore'
     );
+        if ($request->input('password')!==$request->input('password_confirmation')) {
+
+            return response('Пароли не совпадают', 403);
+
+        }dd(1111111);
         $data=$request->validated();
         $data['password']= Hash::make($data['password']);
         $user = User::where('email', $data['email'])->first();
         $pattern = '/' . implode('|', $censure) . '/iu';
         if (preg_match($pattern, $data['name'])) {
-            return response('Текст содержит недопустимую лексику', 403);
+            return response('Имя содержит недопустимую лексику', 403);
 
         }
         if($user) return response('Пользователь с таким email-ом уже существует', 401);

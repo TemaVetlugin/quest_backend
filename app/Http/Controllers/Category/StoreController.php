@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Category;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 
 class StoreController extends Controller
@@ -15,7 +16,7 @@ class StoreController extends Controller
         foreach ($categoriesData as $categoryData) {
             $new_category=Category::create($categoryData);
         }
-        return response([]);
+        return response('Категории добавлены', Response::HTTP_OK);
     }
 
 }

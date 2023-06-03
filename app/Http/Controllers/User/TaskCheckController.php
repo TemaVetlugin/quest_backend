@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\PhotoStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
 class TaskCheckController extends Controller
@@ -19,7 +20,7 @@ $message='Задание доступно';
         }else{
             $message = 'Вы еще не разблокировали это задание';
         }
-        return $message;
+        return response($message,Response::HTTP_OK);
     }
 
 }

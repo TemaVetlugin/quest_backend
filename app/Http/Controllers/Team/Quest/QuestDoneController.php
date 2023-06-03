@@ -7,6 +7,7 @@ use App\Http\Requests\User\PhotoStoreRequest;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
 class QuestDoneController extends Controller
@@ -22,7 +23,7 @@ class QuestDoneController extends Controller
         Team::where(['id' => $user->team_id])->update(['scores' => $scores]);
         $team->quests()->updateExistingPivot($quest_id, ['mode' => 1, 'time'=>$time]);
 //        dd($hints);
-        return response(['Квест закончен']);
+        return response(['Квест закончен'], Response::HTTP_OK);
     }
 
 }

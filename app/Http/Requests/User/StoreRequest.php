@@ -27,5 +27,12 @@ class StoreRequest extends FormRequest
             'password'=> 'required|string|confirmed',
             'scores'=>'integer',
         ];
+
+    }
+    public function messages(): array
+    {
+        return [
+            'password.confirmed' => 'Пароли не совпадают',
+        ];
     }
 }
