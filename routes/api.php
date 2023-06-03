@@ -119,12 +119,14 @@ Route::group([
 
         Route::group(['namespace'=>'News', 'prefix'=>'news'], function(){
             Route::post('/', 'StoreController');
+            Route::get('/', 'IndexController');
             Route::get('/{news}/edit', 'EditController');
             Route::patch('/{news}', 'UpdateController');
             Route::delete('/{news}', 'DeleteController');
         });
         Route::group(['namespace'=>'Question', 'prefix'=>'questions'], function(){
             Route::post('/', 'StoreController');
+            Route::get('/', 'IndexController');
             Route::get('/{question}/edit', 'EditController');
             Route::patch('/{question}', 'UpdateController');
             Route::delete('/{question}', 'DeleteController');
