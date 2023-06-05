@@ -79,7 +79,7 @@ class StoreController extends Controller
 
             return response('Пароли не совпадают', 403);
 
-        }dd(1111111);
+        }
         $data=$request->validated();
         $data['password']= Hash::make($data['password']);
         $user = User::where('email', $data['email'])->first();
