@@ -9,15 +9,15 @@ class ComposerStaticInit0b80911d6ef2578b64bd4c346ffa5acd
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
-        'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
+        'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        '662a729f963d39afe703c9d9b7ab4a8c' => __DIR__ . '/..' . '/symfony/polyfill-php83/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
-        '662a729f963d39afe703c9d9b7ab4a8c' => __DIR__ . '/..' . '/symfony/polyfill-php83/bootstrap.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '3bd81c9b8fcc150b69d8b63b4d2ccf23' => __DIR__ . '/..' . '/spatie/flare-client-php/src/helpers.php',
@@ -184,6 +184,7 @@ class ComposerStaticInit0b80911d6ef2578b64bd4c346ffa5acd
         ),
         'A' => 
         array (
+            'Asm89\\Stack\\' => 12,
             'App\\' => 4,
         ),
     );
@@ -503,6 +504,7 @@ class ComposerStaticInit0b80911d6ef2578b64bd4c346ffa5acd
         'Fruitcake\\Cors\\' => 
         array (
             0 => __DIR__ . '/..' . '/fruitcake/php-cors/src',
+            1 => __DIR__ . '/..' . '/fruitcake/laravel-cors/src',
         ),
         'Faker\\' => 
         array (
@@ -582,6 +584,10 @@ class ComposerStaticInit0b80911d6ef2578b64bd4c346ffa5acd
         array (
             0 => __DIR__ . '/..' . '/bacon/bacon-qr-code/src',
         ),
+        'Asm89\\Stack\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/asm89/stack-cors/src',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -627,14 +633,19 @@ class ComposerStaticInit0b80911d6ef2578b64bd4c346ffa5acd
         'App\\Http\\Controllers\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/IndexController.php',
         'App\\Http\\Controllers\\News\\DeleteController' => __DIR__ . '/../..' . '/app/Http/Controllers/News/DeleteController.php',
         'App\\Http\\Controllers\\News\\EditController' => __DIR__ . '/../..' . '/app/Http/Controllers/News/EditController.php',
+        'App\\Http\\Controllers\\News\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/News/IndexController.php',
         'App\\Http\\Controllers\\News\\StoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/News/StoreController.php',
         'App\\Http\\Controllers\\News\\UpdateController' => __DIR__ . '/../..' . '/app/Http/Controllers/News/UpdateController.php',
+        'App\\Http\\Controllers\\Qr\\CreateController' => __DIR__ . '/../..' . '/app/Http/Controllers/Qr/CreateController.php',
+        'App\\Http\\Controllers\\Qr\\ShowController' => __DIR__ . '/../..' . '/app/Http/Controllers/Qr/ShowController.php',
         'App\\Http\\Controllers\\Quest\\EditController' => __DIR__ . '/../..' . '/app/Http/Controllers/Quest/EditController.php',
         'App\\Http\\Controllers\\Quest\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/Quest/IndexController.php',
+        'App\\Http\\Controllers\\Quest\\QuestShowController' => __DIR__ . '/../..' . '/app/Http/Controllers/Quest/QuestShowController.php',
         'App\\Http\\Controllers\\Quest\\StoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/Quest/StoreController.php',
         'App\\Http\\Controllers\\Quest\\UpdateController' => __DIR__ . '/../..' . '/app/Http/Controllers/Quest/UpdateController.php',
         'App\\Http\\Controllers\\Question\\DeleteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Question/DeleteController.php',
         'App\\Http\\Controllers\\Question\\EditController' => __DIR__ . '/../..' . '/app/Http/Controllers/Question/EditController.php',
+        'App\\Http\\Controllers\\Question\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/Question/IndexController.php',
         'App\\Http\\Controllers\\Question\\StoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/Question/StoreController.php',
         'App\\Http\\Controllers\\Question\\UpdateController' => __DIR__ . '/../..' . '/app/Http/Controllers/Question/UpdateController.php',
         'App\\Http\\Controllers\\Task\\EditController' => __DIR__ . '/../..' . '/app/Http/Controllers/Task/EditController.php',
@@ -657,15 +668,11 @@ class ComposerStaticInit0b80911d6ef2578b64bd4c346ffa5acd
         'App\\Http\\Controllers\\User\\PhotoStoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/PhotoStoreController.php',
         'App\\Http\\Controllers\\User\\QuestCancelController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/QuestCancelController.php',
         'App\\Http\\Controllers\\User\\QuestDoneController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/QuestDoneController.php',
-        'App\\Http\\Controllers\\User\\QuestShowController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/QuestShowController.php',
+        'App\\Http\\Controllers\\User\\QuestStartController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/QuestStartController.php',
         'App\\Http\\Controllers\\User\\ShowController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/ShowController.php',
         'App\\Http\\Controllers\\User\\StartTaskController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/StartTaskController.php',
         'App\\Http\\Controllers\\User\\StoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/StoreController.php',
         'App\\Http\\Controllers\\User\\TaskCheckController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/TaskCheckController.php',
-        'App\\Http\\Controllers\\Version\\DeleteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Version/DeleteController.php',
-        'App\\Http\\Controllers\\Version\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/Version/IndexController.php',
-        'App\\Http\\Controllers\\Version\\StoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/Version/StoreController.php',
-        'App\\Http\\Controllers\\Version\\UpdateController' => __DIR__ . '/../..' . '/app/Http/Controllers/Version/UpdateController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\BlockMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/BlockMiddleware.php',
@@ -684,9 +691,11 @@ class ComposerStaticInit0b80911d6ef2578b64bd4c346ffa5acd
         'App\\Http\\Requests\\User\\PictureStoreRequest' => __DIR__ . '/../..' . '/app/Http/Requests/User/PictureStoreRequest.php',
         'App\\Http\\Requests\\User\\StoreRequest' => __DIR__ . '/../..' . '/app/Http/Requests/User/StoreRequest.php',
         'App\\Http\\Resources\\Fruit\\FruitResorce' => __DIR__ . '/../..' . '/app/Http/Resources/Fruit/FruitResorce.php',
+        'App\\Http\\Resources\\News\\NewsResource' => __DIR__ . '/../..' . '/app/Http/Resources/News/NewsResource.php',
         'App\\Http\\Resources\\Photo\\PhotoResource' => __DIR__ . '/../..' . '/app/Http/Resources/Photo/PhotoResource.php',
         'App\\Http\\Resources\\Picture\\PictureResource' => __DIR__ . '/../..' . '/app/Http/Resources/Picture/PictureResource.php',
         'App\\Http\\Resources\\Quest\\QuestResource' => __DIR__ . '/../..' . '/app/Http/Resources/Quest/QuestResource.php',
+        'App\\Http\\Resources\\Question\\QuestionResource' => __DIR__ . '/../..' . '/app/Http/Resources/Question/QuestionResource.php',
         'App\\Http\\Resources\\User\\UserResource' => __DIR__ . '/../..' . '/app/Http/Resources/User/UserResource.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Fruit' => __DIR__ . '/../..' . '/app/Models/Fruit.php',
@@ -705,6 +714,8 @@ class ComposerStaticInit0b80911d6ef2578b64bd4c346ffa5acd
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',
+        'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/CorsService.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'BaconQrCode\\Common\\BitArray' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Common/BitArray.php',
         'BaconQrCode\\Common\\BitMatrix' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Common/BitMatrix.php',
@@ -2010,7 +2021,9 @@ class ComposerStaticInit0b80911d6ef2578b64bd4c346ffa5acd
         'Faker\\UniqueGenerator' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/UniqueGenerator.php',
         'Faker\\ValidGenerator' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/ValidGenerator.php',
         'Fruitcake\\Cors\\CorsService' => __DIR__ . '/..' . '/fruitcake/php-cors/src/CorsService.php',
+        'Fruitcake\\Cors\\CorsServiceProvider' => __DIR__ . '/..' . '/fruitcake/laravel-cors/src/CorsServiceProvider.php',
         'Fruitcake\\Cors\\Exceptions\\InvalidOptionException' => __DIR__ . '/..' . '/fruitcake/php-cors/src/Exceptions/InvalidOptionException.php',
+        'Fruitcake\\Cors\\HandleCors' => __DIR__ . '/..' . '/fruitcake/laravel-cors/src/HandleCors.php',
         'GrahamCampbell\\ResultType\\Error' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Error.php',
         'GrahamCampbell\\ResultType\\Result' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Result.php',
         'GrahamCampbell\\ResultType\\Success' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Success.php',
