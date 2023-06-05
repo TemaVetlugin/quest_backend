@@ -71,7 +71,7 @@ Route::group([
             Route::get('/', 'ShowController');
 
             Route::group([ 'prefix'=>'quest'], function(){
-            Route::get('/{quest}/start', 'QuestStartController');
+            Route::get('/{quest}', 'QuestStartController');
             Route::post('/done', 'QuestDoneController');
             Route::get('/cancel/{quest}', 'QuestCancelController');
             });
