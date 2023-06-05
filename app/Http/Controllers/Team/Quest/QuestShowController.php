@@ -32,6 +32,6 @@ class QuestShowController extends Controller
 
         $team->quests()->attach($quest->id, ['mode' => 0]);
 
-        return $quest;
+        return response('Вы начали квест', Response::HTTP_OK);;
     }
 }
