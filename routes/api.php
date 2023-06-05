@@ -137,6 +137,10 @@ Route::group([
             Route::patch('/{question}', 'UpdateController');
             Route::delete('/{question}', 'DeleteController');
         });
+        Route::group(['namespace'=>'Qr', 'prefix'=>'qrs'], function(){
+            Route::get('/{task}', 'ShowController');
+            Route::get('/', 'CreateController');
+        });
     });
 
 });
