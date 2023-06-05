@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Quest;
 use Illuminate\Http\Response;
 
-class QuestShowController extends Controller
+class QuestStartController extends Controller
 {
     public function __invoke(Quest $quest)
     {
@@ -18,13 +18,7 @@ class QuestShowController extends Controller
             return response('Сначала закончите текущий квест', Response::HTTP_OK);
         }
         $user->quests()->attach($quest->id, ['mode' => 0]);
-        $tasks=$quest->tasks;
-        foreach($tasks as $task){
-            $categories=$task->categories;
-            $task['categories']=$categories;
-        }
-        $quest['tasks']=$tasks;
-//        dd($categories);
-        return $quest;
+
+        return response('Вы начали квест', Response::HTTP_OK);;
     }
 }

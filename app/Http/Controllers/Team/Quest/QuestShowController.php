@@ -31,13 +31,7 @@ class QuestShowController extends Controller
         }
 
         $team->quests()->attach($quest->id, ['mode' => 0]);
-        $tasks=$quest->tasks;
-        foreach($tasks as $task){
-            $hints=$task->hints;
-            $task['hints']=$hints;
-        }
-        $quest['tasks']=$tasks;
-//        dd($hints);
+
         return $quest;
     }
 }

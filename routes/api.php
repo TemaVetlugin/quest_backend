@@ -51,6 +51,7 @@ Route::group([
     Route::group(['middleware'=>['jwt.auth','block']], function(){
         Route::group(['namespace'=>'Quest', 'prefix'=>'quests'], function(){
             Route::post('/', 'StoreController');
+            Route::get('/{quest}', 'QuestShowController');
             Route::get('/{quest}/edit', 'EditController');
             Route::patch('/{quest}', 'UpdateController');
         });
@@ -70,7 +71,7 @@ Route::group([
             Route::get('/', 'ShowController');
 
             Route::group([ 'prefix'=>'quest'], function(){
-            Route::get('/{quest}', 'QuestShowController');
+            Route::get('/{quest}/start', 'QuestStartController');
             Route::post('/done', 'QuestDoneController');
             Route::get('/cancel/{quest}', 'QuestCancelController');
             });
