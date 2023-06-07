@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Task;
 
+use App\Models\Category;
 use App\Models\Task;
 use App\Models\Team;
 use Endroid\QrCode\Color\Color;
@@ -13,6 +14,7 @@ use Endroid\QrCode\Writer\PngWriter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Task\StoreRequest;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -26,6 +28,7 @@ class StoreController extends Controller
         $file_to_task = [];
         $task_ids = [];
         $tasksData = $request->input('tasks');
+        $categoriesData = $request->input('categories');
         $filesData = [];
         if ($request->file('files')) {
             foreach ($request->file('files') as $index => $file) {
@@ -44,17 +47,22 @@ class StoreController extends Controller
                     $data['file'] = $file_to_task[$i];
                 }
                 $new_task = Task::create($data);
+                foreach ($categoriesData as $categoryData) {
+                    if($categoryData['task_id']=$i){
+                        $categoryData['task_id']=$new_task->id;
+                        $new_category=Category::create($categoryData);
+                    }
+                }
 
 
-
-                $task_ids[$i] = $new_task->id;
+//                $task_ids[$i] = $new_task->id;
                 $i++;
             }
         }
 
-        $data['task_ids']=$task_ids;
+//        $data['task_ids']=$task_ids;
 
-        return $data;
+        return response('Задания добавлены', Response::HTTP_OK);
     }
 
 }
