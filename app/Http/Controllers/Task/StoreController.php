@@ -41,16 +41,20 @@ class StoreController extends Controller
 //        dd($file_to_task);
         if ($tasksData) {
             foreach ($tasksData as $taskData) {
-                $data = json_decode($taskData, true);
+                $data = $taskData;
 
                 if (array_key_exists($i, $file_to_task)) {
                     $data['file'] = $file_to_task[$i];
                 }
                 $new_task = Task::create($data);
+
                 foreach ($categoriesData as $categoryData) {
-                    if($categoryData['task_id']=$i){
-                        $categoryData['task_id']=$new_task->id;
-                        $new_category=Category::create($categoryData);
+//                    $data = json_decode($categoryData, true);
+                    $data = $categoryData;
+                    if($data['task_id']==$i){
+//                        dd($i);
+                        $data['task_id']=$new_task->id;
+                        $new_category=Category::create($data);
                     }
                 }
 

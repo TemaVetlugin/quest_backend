@@ -24,7 +24,8 @@
                     <input v-model="task.scores" type="text" class="form-control mb-3" placeholder="Баллы">
                     <div class="mb-3">
                         <h4 class="text-dark">Добавить изображение к подсказке</h4>
-                        <input v-on:change="onFileSelected" class="form-control w-75" type="file" :data-id="index" id="formFile">
+                        <input v-on:change="onFileSelected" class="form-control w-75" type="file" :data-id="index"
+                               id="formFile">
                     </div>
                     <img v-if="this.qrs[index]" :src="this.qrs[index]" alt="QR Code">
                     <hr>
@@ -36,7 +37,8 @@
                             {{ index1 }}
                             <p>{{ index }}</p>
                             <input v-model="hint.title" type="text" class="form-control mb-3" placeholder="Подсказка">
-                            <input v-model="hint.description" type="text" class="form-control mb-3" placeholder="Подсказка">
+                            <input v-model="hint.description" type="text" class="form-control mb-3"
+                                   placeholder="Подсказка">
                             <input v-model="hint.scores" type="text" class="form-control mb-3" placeholder="Баллы">
                             <input type="submit" @click.prevent="deleteHint(index1)" class="btn btn-danger mb-3"
                                    value="Удалить подсказку">
@@ -50,6 +52,7 @@
         </template>
         <br>
         <input type="submit" @click.prevent="storeQuest" class="btn btn-primary mb-3" value="send">
+        <input type="submit" @click.prevent="storeTask" class="btn btn-primary mb-3" value="send Task">
 
     </div>
 </template>
@@ -97,7 +100,7 @@ export default {
         deleteHint(index) {
 
             this.indexHint--;
-                this.hints.splice(index, 1);
+            this.hints.splice(index, 1);
         },
         storeQuest() {
             api.post('/api/auth/quests', this.newQuest)
@@ -117,76 +120,113 @@ export default {
                     });
                     for (let i = 0; i < this.files.length; i++) {
                         const file = this.files[i];
-                            formData.append(`files[${i}]`, file);
+                        formData.append(`files[${i}]`, file);
                     }
 
                     //добавление заданий
-                        if(this.tasks.lenght!==0) {
-                            api.post('/api/auth/tasks', formData, {
-                                headers: {
-                                    'Content-Type': 'multipart/form-data'
-                                }
-                            })
-                                .then(res => {
-                                    // const blob = new Blob([res.data], { type: 'image/png' });
-                                    // this.qrImageUrl = res.data;
+                    if (this.tasks.lenght !== 0) {
+                        api.post('/api/auth/tasks', formData, {
+                            headers: {
+                                'Content-Type': 'multipart/form-data'
+                            }
+                        })
+                            .then(res => {
+                                // const blob = new Blob([res.data], { type: 'image/png' });
+                                // this.qrImageUrl = res.data;
 
-                                    console.log(res);
-                                    // Добавление qr кодов в массив
+                                console.log(res);
+                                // Добавление qr кодов в массив
+                                for (let index in res.data.task_ids) {
+                                    this.qrs[index] = res.data.qrs[index];
+                                    console.log(this.qrs);
+                                }
+                                //присваивание подсказок к полученным с бэка айди заданий,
+                                for (let key in this.hints) {
                                     for (let index in res.data.task_ids) {
                                         this.qrs[index] = res.data.qrs[index];
-                                        console.log(this.qrs);
-                                    }
-                                    //присваивание подсказок к полученным с бэка айди заданий,
-                                    for (let key in this.hints) {
-                                        for (let index in res.data.task_ids) {
-                                            this.qrs[index] = res.data.qrs[index];
-                                            console.log(res.data.qrs[index]);
-                                            if (this.hints[key].task_id == index)
-                                                this.hints[key].task_id = res.data.task_ids[index];
+                                        console.log(res.data.qrs[index]);
+                                        if (this.hints[key].task_id == index)
+                                            this.hints[key].task_id = res.data.task_ids[index];
 
+                                    }
+                                }
+                                //добавление подсказок
+                                // console.log(this.hints)
+                                if (this.hints.lenght !== 0) {
+                                    api.post('/api/auth/hints', {hints: this.hints}, {
+                                        headers: {
+                                            'Content-Type': 'application/json',
                                         }
-                                    }
-                                    //добавление подсказок
-                                    // console.log(this.hints)
-                                    if (this.hints.lenght !== 0) {
-                                        api.post('/api/auth/hints', {hints: this.hints}, {
-                                            headers: {
-                                                'Content-Type': 'application/json',
-                                            }
-                                        })
-                                            .then(res => {
+                                    })
+                                        .then(res => {
 
-                                                // console.log(res);
-                                                // console.log(this.tasks);
-                                            })
-                                            .catch(err => {
-                                                console.log(err);
-                                            })
-                                    }
-                                })
-                                .catch(err => {
-                                    console.log(err);
-                                })
-                        }
+                                            // console.log(res);
+                                            // console.log(this.tasks);
+                                        })
+                                        .catch(err => {
+                                            console.log(err);
+                                        })
+                                }
+                            })
+                            .catch(err => {
+                                console.log(err);
+                            })
+                    }
                 })
                 .catch(err => {
                     console.log(err);
                 })
         },
-        onFileSelected(event) {
-            const id = event.target.dataset.id;
-            this.files[id]=event.target.files[0];
-            // let object =
-            // console.log(object);
-            // this.indexTask--
-            // console.log(this.tasks[this.indexTask]);
-            //
-            // this.indexTask++
-            console.log(this.files);
-        },
 
-    }
+        storeTask() {
+            const taskk = {
+                "tasks": [{
+                    "quest_id": 1,
+                    "address": "вафыв",
+                    "time": "23",
+                    "title": "афыва",
+                    "text": "фыва",
+                    "file": "",
+                    "hint1": "фыва",
+                    "hint2": "фыва",
+                    "hint3": "фыва",
+                    "qr": 1,
+                    "key": "wMfS",
+                    "file_qr": "",
+                    "title_qr": "фыва",
+                    "address_qr": "фыва"
+                }],
+                "categories": [{"time": "10", "scores": "10", "task_id": 0}, {
+                    "time": "20",
+                    "scores": "20",
+                    "task_id": 0
+                }, {"time": "30", "scores": "30", "task_id": 3}, {
+                    "time": "40",
+                    "scores": "40",
+                    "task_id": 0
+                }, {"time": "59", "scores": "50", "task_id": 3}]
+            }
+            api.post('/api/auth/tasks', taskk)
+                .then(res => {
+                    console.log(res);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        },
+    onFileSelected(event) {
+        const id = event.target.dataset.id;
+        this.files[id] = event.target.files[0];
+        // let object =
+        // console.log(object);
+        // this.indexTask--
+        // console.log(this.tasks[this.indexTask]);
+        //
+        // this.indexTask++
+        console.log(this.files);
+    },
+
+}
 }
 </script>
 
