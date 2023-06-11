@@ -69,6 +69,7 @@ Route::group([
         });
         Route::group(['namespace'=>'User', 'prefix'=>'users'], function(){
             Route::get('/', 'ShowController');
+            Route::get('/score', 'ScoreController');
 
             Route::group([ 'prefix'=>'quest'], function(){
             Route::get('/{quest}', 'QuestStartController');

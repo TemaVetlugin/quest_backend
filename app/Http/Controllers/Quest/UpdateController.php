@@ -14,8 +14,7 @@ class UpdateController extends Controller
 
     public function __invoke(Request $request, Quest $quest)
     {
-        $questData = $request->input('content');
-        $data = json_decode($questData, true);
+        $data = $request->input('content');
         if($request->file('file_start')){
             $file_start=$request->file('file_start');
             if (Storage::disk('public')->exists($quest['file_start'])) {
