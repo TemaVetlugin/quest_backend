@@ -16,15 +16,15 @@ class StoreController extends Controller
         $data=$request->input('content');
         $file_start=$request->file('file_start');
         if($file_start){
-            $data['file_start']=Storage::disk('public')->put('/quests', $file_start);
+            $data['file_start']=Storage::disk('public')->putFile('/quests', $file_start);
         }
         $file_main=$request->file('file_main');
         if($file_main){
-            $data['file_main']=Storage::disk('public')->put('/quests', $file_main);
+            $data['file_main']=Storage::disk('public')->putFile('/quests', $file_main);
         }
         $file_end=$request->file('file_end');
         if($file_end){
-            $data['file_end']=Storage::disk('public')->put('/quests', $file_end);
+            $data['file_end']=Storage::disk('public')->putFile('/quests', $file_end);
         }
         $quest=Quest::create($data);
         return $quest->id;
