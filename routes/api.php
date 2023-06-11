@@ -30,6 +30,8 @@ Route::group([
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
     Route::post('/google/login', 'GoogleStoreController');
+    Route::post('/link', 'LinkController');
+    Route::post('/email', 'EmailAuthController');
 
     Route::group(['namespace'=>'User', 'prefix'=>'users'], function(){
         Route::get('/leaders/', 'IndexController');
@@ -74,6 +76,8 @@ Route::group([
         Route::group(['namespace'=>'User', 'prefix'=>'users'], function(){
             Route::get('/', 'ShowController');
             Route::get('/score', 'ScoreController');
+            Route::patch('/password', 'PasswordUpdateController');
+            Route::patch('/data', 'DataUpdateController');
 
             Route::group([ 'prefix'=>'quest'], function(){
             Route::get('/{quest}', 'QuestStartController');
