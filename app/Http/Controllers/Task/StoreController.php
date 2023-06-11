@@ -30,11 +30,20 @@ class StoreController extends Controller
         $tasksData = $request->input('tasks');
         $categoriesData = $request->input('categories');
         $filesData = [];
+        $filesQrData = [];
         if ($request->file('files')) {
             foreach ($request->file('files') as $index => $file) {
                 if ($file->isValid()) {
                     $filesData[$index] = $file;
                     $file_to_task[$index] = Storage::disk('public')->put('/tasks', $file);
+                }
+            }
+        }
+        if ($request->file('files_qr')) {
+            foreach ($request->file('files_qr') as $index => $file) {
+                if ($file->isValid()) {
+                    $filesQrData[$index] = $file;
+                    $fileQr_to_task[$index] = Storage::disk('public')->put('/tasks', $file);
                 }
             }
         }
@@ -45,6 +54,9 @@ class StoreController extends Controller
 //                $data = $taskData;
                 if (array_key_exists($i, $file_to_task)) {
                     $taskData['file'] = $file_to_task[$i];
+                }
+                if (array_key_exists($i, $fileQr_to_task)) {
+                    $taskData['file'] = $fileQr_to_task[$i];
                 }
                 $new_task = Task::create($taskData);
 
