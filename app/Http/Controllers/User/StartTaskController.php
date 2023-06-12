@@ -19,7 +19,6 @@ class StartTaskController extends Controller
         $task_key = $request->input('task_key');
         $user = auth()->user();
         $task = Task::where('key', $user->task_id)->first();
-        $new_task = Task::where('key', $task_key)->first();
         if ($user->task_id !== null) {
             $categories = $task->categories;
 
@@ -36,12 +35,11 @@ class StartTaskController extends Controller
 //            dd($scores);
             $data['quest_scores'] = $scores;
             if($task_key==null){
-                $data['started_at'] = null;
-                $data['task_id'] = null;
-                $user->update($data);
-                return response('Вы закончили задание', Response::HTTP_OK);
+
             }
+
         }
+        $new_task = Task::where('key', $task_key)->first();
 
         if($new_task->qr=='0') {
             $data['started_at'] = now();
