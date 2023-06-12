@@ -126,7 +126,7 @@ export default {
 
         },
         questDone() {
-            api.post(`/api/auth/users/quest/done/`,{quest_id: this.questEnd, quest_scores: this.questScores, time: this.questTime})
+            api.post(`/api/auth/users/quest/done/`,{quest_id: this.questEnd})
                 .then(res => {
                     console.log(res);
                 })

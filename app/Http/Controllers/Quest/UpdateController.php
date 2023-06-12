@@ -39,7 +39,7 @@ class UpdateController extends Controller
             }
             $data['file_end'] = Storage::disk('public')->putFile('/quests', $file_end);
         }
-        dd($data);
+//        dd($data);
         $quest->update($data);
         return response('Квест изменен', Response::HTTP_OK);
     }
