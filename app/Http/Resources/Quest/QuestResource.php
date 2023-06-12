@@ -21,6 +21,7 @@ class QuestResource extends JsonResource
             'path'=>$this->path,
             'text'=>$this->text,
             'file_main'=>$this->file_main,
+            'available'=>$this->available,
         ];
     }
 }
