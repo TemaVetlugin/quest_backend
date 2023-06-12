@@ -26,6 +26,7 @@ class StoreController extends Controller
 
         $i = 0;
         $file_to_task = [];
+        $fileQr_to_task = [];
         $task_ids = [];
         $tasksData = $request->input('tasks');
         $categoriesData = $request->input('categories');

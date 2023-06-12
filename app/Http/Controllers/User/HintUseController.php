@@ -16,7 +16,7 @@ class HintUseController extends Controller
         $hint_scores= $request->input('scores');
         $user=auth()->user();
         $data['quest_scores']=$user->quest_scores-$hint_scores;
-        dd($data);
+//        dd($data);
         $user->update($data);
         return response('Вы активировали подсказку', Response::HTTP_OK);
     }

@@ -15,7 +15,11 @@ class QuestCancelController extends Controller
             return response('Вы не участвуете в этом квесте', Response::HTTP_OK);
         }
         $user->quests()->detach($quest->id);
-        $user->update(['task_id' => null]);
+        $data['task_id']=null;
+        $data['started_at']=null;
+        $data['quest_scores']=0;
+
+        $user->update($data);
         return response('Квест отменен', Response::HTTP_OK);
     }
 }

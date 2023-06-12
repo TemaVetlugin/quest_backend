@@ -34,6 +34,7 @@
             <input v-on:change="onFileSelected" class="form-control w-75" type="file" id="formFile">
         </div>
         <a href="#" class="btn btn-success mb-5" @click.prevent="addNews">Добавить</a><br>
+        <a href="#" class="btn btn-success mb-5" @click.prevent="Check">test</a><br>
     </div>
 </template>
 
@@ -155,7 +156,20 @@ export default {
                 })
 
         },
+        Check() {
+            // let formData = new FormData();
+            // formData.append('file', this.photo);
+            const data = {
+                "content": {
+                    "title_start": "Заголовок"
+                }
+            }
 
+            api.patch('/api/auth/quests/1', data)
+                .then(res => {
+                    console.log(res);
+                })
+        },
         onFileSelected(event) {
             this.photo = event.target.files[0];
         },
