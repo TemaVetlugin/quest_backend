@@ -16,25 +16,26 @@ class StartTaskController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $task_key= $request->input('task_key');
-        $user=auth()->user();
-        if($user->task_id!==null){
+        $task_key = $request->input('task_key');
+        $user = auth()->user();
+        if ($user->task_id !== null) {
             $task = Task::where('key', $user->task_id)->first();
-            $categories=$task->categories;
+            $categories = $task->categories;
 
             $startDate = Carbon::parse($user->started_at);
             $endDate = Carbon::parse(now());
             $diffInMinutes = $startDate->diffInMinutes($endDate);
-
-            $min_dif=99999999;
-            foreach($categories as $category){
-                $categoryDif=$category->time/$diffInMinutes;
-                if($categoryDif>=1&&$categoryDif<$min_dif){
-                    $min_dif=$categoryDif;
+            $scores = 0;
+            $min_dif = 99999999;
+            foreach ($categories as $category) {
+                $categoryDif = $category->time / $diffInMinutes;
+                if ($categoryDif >= 1 && $categoryDif < $min_dif) {
+                    $min_dif = $categoryDif;
                     $scores = $category->scores;
                 }
             }
-            $data['quest_scores']=$scores;
+//            dd($scores);
+            $data['quest_scores'] = $scores;
         }
 
         $data['started_at'] = now();

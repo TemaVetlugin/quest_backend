@@ -92,6 +92,11 @@ Route::group([
 //                Route::get('/cancel/{quest}', 'QuestCancelController');
             });
 
+            Route::group([ 'prefix'=>'hint'], function(){
+                Route::post('/', 'HintUseController');
+//                Route::get('/cancel/{quest}', 'QuestCancelController');
+            });
+
             Route::group([ 'prefix'=>'photo'], function(){
             Route::post('/', 'PhotoStoreController');
             Route::post('/choose', 'PhotoChooseController');

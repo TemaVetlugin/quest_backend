@@ -17,25 +17,25 @@ class UpdateController extends Controller
         $data = $request->input('content');
         if($request->file('file_start')){
             $file_start=$request->file('file_start');
-            if (Storage::disk('public')->exists($quest['file_start'])) {
+            if (Storage::disk('public')->exists($quest->file_start)) {
                 // Удаляем файл
-                Storage::disk('public')->delete($quest['file_start']);
+                Storage::disk('public')->delete($quest->file_start);
             }
             $data['file_start'] = Storage::disk('public')->putFile('/quests', $file_start);
         }
         if($request->file('file_main')){
             $file_main=$request->file('file_main');
-            if (Storage::disk('public')->exists($quest['file_main'])) {
+            if (Storage::disk('public')->exists($quest->file_main)) {
                 // Удаляем файл
-                Storage::disk('public')->delete($quest['file_main']);
+                Storage::disk('public')->delete($quest->file_main);
             }
             $data['file_main'] = Storage::disk('public')->putFile('/quests', $file_main);
         }
         if($request->file('file_end')){
             $file_end=$request->file('file_end');
-            if (Storage::disk('public')->exists($quest['file_end'])) {
+            if (Storage::disk('public')->exists($quest->file_end)) {
                 // Удаляем файл
-                Storage::disk('public')->delete($quest['file_end']);
+                Storage::disk('public')->delete($quest->file_end);
             }
             $data['file_end'] = Storage::disk('public')->putFile('/quests', $file_end);
         }
