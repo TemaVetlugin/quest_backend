@@ -29,6 +29,14 @@ class UpdateController extends Controller
             }
             $data['file'] = Storage::disk('public')->put('/tasks', $file);
         }
+        if($request->file('file_qr')){
+            $file=$request->file('file_qr');
+            if (Storage::disk('public')->exists($task['file_qr'])) {
+                // Удаляем файл
+                Storage::disk('public')->delete($task['file_qr']);
+            }
+            $data['file_qr'] = Storage::disk('public')->put('/tasks', $file);
+        }
         $task->update($data);
         return response('Задание изменено', Response::HTTP_OK);
     }

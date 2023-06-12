@@ -179,7 +179,63 @@ export default {
         },
 
         storeTask() {
-            const taskk = {"tasks": [{"quest_id":1,"address":"asdf","time":"23","title":"asdf","text":"asdfasdf","file":"","hint1":"asdf","hint2":"asdf","hint3":"asdf","qr":1,"key":"UvgX","file_qr":"","title_qr":"asdf","address_qr":"asdf"}],"categories":[{"time":"10","scores":"10","task_id":3},{"time":"20","scores":"20","task_id":3},{"time":"30","scores":"30","task_id":0},{"time":"40","scores":"40","task_id":0},{"time":"59","scores":"50","task_id":0}]}
+            const taskk = {
+                "tasks": [
+                    {
+                        "quest_id": 5,
+                        "address": "sdfasdf",
+                        "time": "23",
+                        "title": "as",
+                        "text": "asdf",
+                        "hint1": {
+                            "time": "",
+                            "scores": "",
+                            "text": "asdfasdf"
+                        },
+                        "hint2": {
+                            "time": "",
+                            "scores": "",
+                            "text": "asdf"
+                        },
+                        "hint3": {
+                            "time": "",
+                            "scores": "",
+                            "text": "asdfasd"
+                        },
+                        "qr": null,
+                        "answer": "asdfas"
+                    }
+                ],
+                "files": null,
+                "categories": [
+                    {
+                        "time": "10",
+                        "scores": "10",
+                        "task_id": 0
+                    },
+                    {
+                        "time": "20",
+                        "scores": "20",
+                        "task_id": 0
+                    },
+                    {
+                        "time": "30",
+                        "scores": "30",
+                        "task_id": 0
+                    },
+                    {
+                        "time": "40",
+                        "scores": "40",
+                        "task_id": 0
+                    },
+                    {
+                        "time": "50",
+                        "scores": "50",
+                        "task_id": 0
+                    }
+                ]
+            }
+
             api.post('/api/auth/tasks', taskk)
                 .then(res => {
                     console.log(res);

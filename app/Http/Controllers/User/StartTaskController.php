@@ -18,28 +18,36 @@ class StartTaskController extends Controller
     {
         $task_key = $request->input('task_key');
         $user = auth()->user();
+        $task = Task::where('key', $user->task_id)->first();
+        $new_task = Task::where('key', $task_key)->first();
         if ($user->task_id !== null) {
-            $task = Task::where('key', $user->task_id)->first();
             $categories = $task->categories;
 
             $startDate = Carbon::parse($user->started_at);
             $endDate = Carbon::parse(now());
             $diffInMinutes = $startDate->diffInMinutes($endDate);
-            $scores = 0;
-            $min_dif = 99999999;
+            $scores = $user->quest_scores;
             foreach ($categories as $category) {
-                $categoryDif = $category->time / $diffInMinutes;
-                if ($categoryDif >= 1 && $categoryDif < $min_dif) {
-                    $min_dif = $categoryDif;
-                    $scores = $category->scores;
+//                $categoryDif = $category->time / $diffInMinutes;
+                if ($category->time < $diffInMinutes) {
+                    $scores -= $category->scores;
                 }
             }
 //            dd($scores);
             $data['quest_scores'] = $scores;
+            if($task_key==null){
+                $data['started_at'] = null;
+                $data['task_id'] = null;
+                $user->update($data);
+                return response('Вы закончили задание', Response::HTTP_OK);
+            }
         }
 
-        $data['started_at'] = now();
+        if($new_task->qr=='0') {
+            $data['started_at'] = now();
+        }
         $data['task_id'] = $task_key;
+        $data['quest_scores'] = $user->quest_scores+$task->scores;
         $user->update($data);
 //        dd($hints);
         return response('Вы начали задание', Response::HTTP_OK);

@@ -14,7 +14,7 @@ class UpdateController extends Controller
 
     public function __invoke(Request $request, Quest $quest)
     {
-        $data = $request->input('content');
+        $questData = $request->input('content');
         if($request->file('file_start')){
             $file_start=$request->file('file_start');
             if (Storage::disk('public')->exists($quest->file_start)) {
@@ -39,6 +39,7 @@ class UpdateController extends Controller
             }
             $data['file_end'] = Storage::disk('public')->putFile('/quests', $file_end);
         }
+        dd($data);
         $quest->update($data);
         return response('Квест изменен', Response::HTTP_OK);
     }
