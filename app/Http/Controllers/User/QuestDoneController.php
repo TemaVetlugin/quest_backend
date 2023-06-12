@@ -17,15 +17,14 @@ class QuestDoneController extends Controller
         $quest_id= $request->input('quest_id');
         $user=auth()->user();
         $quest_scores= $user->quest_scores;
+        $quest = $user->quests()->wherePivot('quest_id', $quest_id)->withPivot(['created_at', 'time'])->first();
 
-
-        $startDate = Carbon::parse($user->started_at);
+        $startDate = Carbon::parse($quest->pivot->created_at);
         $endDate = Carbon::parse(now());
         $time = $startDate->diffInMinutes($endDate);
-
+//        dd($time);
         $data['scores']=$user->scores+$user->quest_scores;
         $data['started_at']=null;
-        $data['task_id']=null;
         $data['quest_scores']=0;
         $user->update($data);
         $user->quests()->updateExistingPivot($quest_id, ['mode' => 1, 'time'=>$time]);

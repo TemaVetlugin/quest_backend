@@ -30,11 +30,14 @@ class StartTaskController extends Controller
 //                $categoryDif = $category->time / $diffInMinutes;
                 if ($category->time < $diffInMinutes) {
                     $scores -= $category->scores;
+//                    dd($scores);
                 }
             }
 //            dd($scores);
             $data['quest_scores'] = $scores;
             if($task_key==null){
+                $data['task_id']=null;
+                $user->update($data);
                 return response('Вы закончили задание', Response::HTTP_OK);
             }
 
@@ -44,8 +47,8 @@ class StartTaskController extends Controller
         if($new_task->qr=='0') {
             $data['started_at'] = now();
         }
+        $data['quest_scores'] = $user->quest_scores+$new_task->scores;
         $data['task_id'] = $task_key;
-        $data['quest_scores'] = $user->quest_scores+$task->scores;
         $user->update($data);
 //        dd($hints);
         return response('Вы начали задание', Response::HTTP_OK);
