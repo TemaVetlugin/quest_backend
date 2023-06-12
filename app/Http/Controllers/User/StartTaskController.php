@@ -35,7 +35,7 @@ class StartTaskController extends Controller
 //            dd($scores);
             $data['quest_scores'] = $scores;
             if($task_key==null){
-
+                return response('Вы закончили задание', Response::HTTP_OK);
             }
 
         }

@@ -59,7 +59,7 @@ Route::group([
             Route::post('/', 'StoreController');
             Route::get('/{quest}', 'QuestShowController');
             Route::get('/{quest}/edit', 'EditController');
-            Route::patch('/{quest}', 'UpdateController');
+            Route::post('/{quest}', 'UpdateController');
         });
         Route::group(['namespace'=>'Task', 'prefix'=>'tasks'], function(){
 //            Route::get('/', 'IndexController');

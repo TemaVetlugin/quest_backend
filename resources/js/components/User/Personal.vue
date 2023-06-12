@@ -159,13 +159,21 @@ export default {
         Check() {
             // let formData = new FormData();
             // formData.append('file', this.photo);
+
             const data = {
                 "content": {
-                    "title_start": "Заголовок"
+                    "title_start": "Заголовок1111"
                 }
             }
+            // var jsonString = JSON.stringify(data);
 
-            api.patch('/api/auth/quests/1', data)
+            // const data = new FormData();
+
+            api.post('/api/auth/quests/1',  data, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
                 .then(res => {
                     console.log(res);
                 })

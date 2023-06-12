@@ -236,7 +236,11 @@ export default {
                 ]
             }
 
-            api.post('/api/auth/tasks', taskk)
+            api.post('/api/auth/tasks', taskk, {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
                 .then(res => {
                     console.log(res);
                 })

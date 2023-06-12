@@ -14,9 +14,9 @@ class QuestDoneController extends Controller
     public function __invoke(  Request $request)
     {
         $quest_id= $request->input('quest_id');
-        $time = $request->input('time');
-        $quest_scores= $request->input('quest_scores');
         $user=auth()->user();
+        $time = $request->input('time');
+        $quest_scores= $user->quest_scores;
         $scores=$user->scores+$quest_scores;
         $user->update(['scores' => $scores]);
         $user->quests()->updateExistingPivot($quest_id, ['mode' => 1, 'time'=>$time]);
