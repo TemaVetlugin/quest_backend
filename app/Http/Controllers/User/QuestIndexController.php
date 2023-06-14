@@ -13,7 +13,7 @@ class QuestIndexController extends Controller
     {
         $user=auth()->user();
         $user = User::with(['quests'=>function($query){
-            $query->withPivot(['mode', 'time'])->orderBy('id');
+            $query->withPivot(['mode', 'time', 'scores'])->orderBy('id');
         }])->find($user->id);
         return $user;
     }

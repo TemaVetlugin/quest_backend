@@ -76,6 +76,7 @@ Route::group([
         Route::group(['namespace'=>'User', 'prefix'=>'users'], function(){
             Route::get('/', 'ShowController');
             Route::get('/score', 'ScoreController');
+            Route::get('/started_at', 'StartedController');
             Route::patch('/password', 'PasswordUpdateController');
             Route::patch('/data', 'DataUpdateController');
 

@@ -23,11 +23,11 @@ class QuestDoneController extends Controller
         $endDate = Carbon::parse(now());
         $time = $startDate->diffInMinutes($endDate);
 //        dd($time);
-        $data['scores']=$user->scores+$user->quest_scores;
+        $data['scores']=$user->scores+$quest_scores;
         $data['started_at']=null;
         $data['quest_scores']=0;
         $user->update($data);
-        $user->quests()->updateExistingPivot($quest_id, ['mode' => 1, 'time'=>$time]);
+        $user->quests()->updateExistingPivot($quest_id, ['mode' => 1, 'time'=>$time, 'scores'=>$quest_scores]);
 //        dd($hints);
         return response('Квест пройден',Response::HTTP_OK);
     }
