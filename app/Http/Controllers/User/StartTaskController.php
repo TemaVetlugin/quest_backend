@@ -28,7 +28,7 @@ class StartTaskController extends Controller
             $scores = $user->quest_scores;
             foreach ($categories as $category) {
 //                $categoryDif = $category->time / $diffInMinutes;
-                if ($category->time < $diffInMinutes) {
+                if ($category->time <= $diffInMinutes) {
                     $scores -= $category->scores;
 //                    dd($scores);
                 }
@@ -47,7 +47,7 @@ class StartTaskController extends Controller
         if($new_task->qr=='0') {
             $data['started_at'] = now();
         }
-        $data['quest_scores'] = $user->quest_scores+$new_task->scores;
+        $data['quest_scores'] = $scores+$new_task->scores;
         $data['task_id'] = $task_key;
         $user->update($data);
 //        dd($hints);

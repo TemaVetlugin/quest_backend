@@ -30,7 +30,7 @@ class QuestShowController extends Controller
             return response('Вы уже прошли этот квест', Response::HTTP_OK);
         }
 
-        $team->quests()->attach($quest->id, ['mode' => 0]);
+        $team->quests()->attach($quest->id, ['mode' => 0, 'created_at'=>now()]);
 
         return response('Вы начали квест', Response::HTTP_OK);;
     }

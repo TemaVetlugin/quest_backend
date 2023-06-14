@@ -17,7 +17,7 @@ class QuestStartController extends Controller
         if($user->task_id!==null){
             return response('Сначала закончите текущий квест', Response::HTTP_OK);
         }
-        $user->quests()->attach($quest->id, ['mode' => 0]);
+        $user->quests()->attach($quest->id, ['mode' => 0, 'created_at'=>now()]);
 
         return response('Вы начали квест', Response::HTTP_OK);;
     }

@@ -22,7 +22,10 @@ class QuestCancelController extends Controller
         $team->quests()->detach($quest->id);
         if($team_id) {
             User::where(['team_id' => $team_id])->update(['task_id' => null]);
-            return response(['Квест отменен']);
+            $data['started_at']=null;
+            $data['quest_scores']=0;
+
+            $team->update($data);
         }
         return response('Квест отменен', Response::HTTP_OK);
     }

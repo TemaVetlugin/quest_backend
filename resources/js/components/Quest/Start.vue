@@ -182,7 +182,7 @@ export default {
         },
         qrCodeCheckTeam() {
             //Получение данных о квесте+задания+подсказки к ним
-            api.post(`/api/auth/users/task/check/`,{qrKey: this.qrKeyTeam})
+            api.post(`/api/auth/teams/task/check/`,{qrKey: this.qrKeyTeam})
                 .then(res => {
                     console.log(res);
                 })

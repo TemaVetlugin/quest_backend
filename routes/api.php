@@ -107,6 +107,7 @@ Route::group([
         Route::group(['namespace'=>'Team', 'prefix'=>'teams'], function(){
 
             Route::post('/task', 'StartTaskController');
+            Route::post('/task/check', 'TaskCheckController');
             Route::post('/', 'StoreController');
             Route::post('/join', 'JoinController');
             Route::get('/quit', 'QuitController');
