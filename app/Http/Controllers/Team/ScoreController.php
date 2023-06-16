@@ -13,7 +13,7 @@ class ScoreController extends Controller
     {
         $user_auth = auth()->user();
         $team_id=$user_auth->team_id;
-        $user_team=Team::where('creator_id', $user_auth->id)->first();
+        $user_team=Team::where('id', $user_auth->team_id)->first();
         $data['scores']=$user_team->scores;
         $data['title']=$user_team->title;
         $teams = Team::orderBy('scores', 'DESC')->get();

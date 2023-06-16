@@ -25,7 +25,7 @@ class JoinController extends Controller
             }
             else{
                 $count = User::where('team_id', $team->id)->count();
-                if($count>5){
+                if($count>9){
                     return response('Команда укомплектована', Response::HTTP_OK);
                 }
                 $user->update(['team_id' => $team->id]);

@@ -35,7 +35,7 @@ class AddController extends Controller
             return response('Вы не являетесь капитаном команды', Response::HTTP_OK);
         }
         $count = User::where('team_id', $team->id)->count();
-        if($count>5){
+        if($count>9){
             return response('Команда укомплектована', Response::HTTP_OK);
         }
         $user->update(['team_id' => $team->id]);

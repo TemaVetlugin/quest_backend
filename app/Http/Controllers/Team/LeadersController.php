@@ -12,8 +12,13 @@ class LeadersController extends Controller
 {
     public function __invoke()
     {
-        $roadmaps=Team::orderBy('scores', 'DESC')->get();
-        return TeamResource::collection($roadmaps);
+        $teams = Team::orderBy('scores', 'DESC')->take(10)->get();
+        foreach($teams as $team){
+            $user = User::where('id', $team->creator_id)->first();
+            $team['photo']=$user->photo;
+
+        }
+        return TeamResource::collection($teams);
     }
 
 }

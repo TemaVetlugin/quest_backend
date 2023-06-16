@@ -18,6 +18,7 @@ class QuestCancelController extends Controller
         $data['task_id']=null;
         $data['started_at']=null;
         $data['quest_scores']=0;
+        $data['hints']=0;
 
         $user->update($data);
         return response('Квест отменен', Response::HTTP_OK);

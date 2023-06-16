@@ -55,6 +55,18 @@ class StoreController extends Controller
                 if (array_key_exists($i, $fileQr_to_task)) {
                     $taskData['file_qr'] = $fileQr_to_task[$i];
                 }
+                if(!$data->key) {
+                    for ($k = 0; $k < 5; $k++) {
+                        $key = Str::random(4);
+                        $key_exists = Task::where('key', $key)->first();
+                        if ($key_exists) {
+                            $k = 0;
+                        } else {
+                            $k = 5;
+                            $data['key'] = $key;
+                        }
+                    }
+                }
                 $new_task = Task::create($taskData);
 
                 $data = json_decode($categoriesData, true);
