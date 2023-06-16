@@ -41,6 +41,7 @@ class StartTaskController extends Controller
 //                dd($scores);
 //            dd($scores);
                 $data['quest_scores'] = $scores;
+                $data['hints']=0;
                 if($task_key==null){
 //                    $data['task_id']=null;
                     User::where(['team_id' => $team_id])->update(['task_id' => null]);
