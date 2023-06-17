@@ -163,7 +163,7 @@ export default {
 
             // const data = new FormData();
 
-            api.post('/api/auth/users/hint', {scores: 9} )
+            api.get('/api/auth/teams/scores')
                 .then(res => {
                     console.log(res);
                 })

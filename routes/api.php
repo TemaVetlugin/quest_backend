@@ -106,6 +106,7 @@ Route::group([
         });
         Route::group(['namespace'=>'Team', 'prefix'=>'teams'], function(){
 
+            Route::get('/scores', 'ScoreController');
             Route::post('/task', 'StartTaskController');
             Route::post('/task/check', 'TaskCheckController');
             Route::post('/', 'StoreController');
@@ -115,7 +116,6 @@ Route::group([
             Route::get('/{team}', 'ShowController');
             Route::get('admin/{team}', 'AdminController');
             Route::post('/add', 'AddController');
-            Route::get('/score', 'ScoreController');
 
             Route::group(['namespace'=>'Quest', 'prefix'=>'quest'], function(){
                 Route::get('/{quest}', 'QuestShowController');

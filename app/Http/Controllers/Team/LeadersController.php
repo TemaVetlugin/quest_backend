@@ -18,7 +18,7 @@ class LeadersController extends Controller
             $team['photo']=$user->photo;
 
         }
-        return TeamResource::collection($teams);
+        return $teams;
     }
 
 }

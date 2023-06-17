@@ -55,7 +55,7 @@ class StoreController extends Controller
                 if (array_key_exists($i, $fileQr_to_task)) {
                     $taskData['file_qr'] = $fileQr_to_task[$i];
                 }
-                if(!$data->key) {
+                if(!$taskData['key']) {
                     for ($k = 0; $k < 5; $k++) {
                         $key = Str::random(4);
                         $key_exists = Task::where('key', $key)->first();
@@ -63,7 +63,7 @@ class StoreController extends Controller
                             $k = 0;
                         } else {
                             $k = 5;
-                            $data['key'] = $key;
+                            $taskData['key'] = $key;
                         }
                     }
                 }
