@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 
 class UpdateController extends Controller
 {
-    public function __invoke(Request $request, Task $task)
+    public function __invoke(Request $request)
     {
         $i = 0;
         $file_to_task = [];
@@ -72,7 +72,7 @@ class UpdateController extends Controller
             if (array_key_exists($i, $fileQr_to_task)) {
                 $taskData['file_qr'] = $fileQr_to_task[$i];
             }
-            if (!$taskData['key']) {
+            if(!isset($taskData['key'])) {
                 for ($k = 0; $k < 5; $k++) {
                     $key = Str::random(4);
                     $key_exists = Task::where('key', $key)->first();

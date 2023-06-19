@@ -13,7 +13,9 @@ class QuestShowController extends Controller
         $user=auth()->user();
         $team=Team::where('id', $user->team_id)->first();
         $quest['user_hints']=$user->hint;
-        $quest['team_hints'] = $team->hints;
+        if($team) {
+            $quest['team_hints'] = $team->hints;
+        }
         $tasks=$quest->tasks;
         foreach($tasks as $task){
             $categories=$task->categories;

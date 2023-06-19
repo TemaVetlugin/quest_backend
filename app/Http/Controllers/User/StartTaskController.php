@@ -19,13 +19,13 @@ class StartTaskController extends Controller
         $task_key = $request->input('task_key');
         $user = auth()->user();
         $task = Task::where('key', $user->task_id)->first();
+        $scores = $user->quest_scores;
         if ($user->task_id !== null) {
             $categories = $task->categories;
 
             $startDate = Carbon::parse($user->started_at);
             $endDate = Carbon::parse(now());
             $diffInMinutes = $startDate->diffInMinutes($endDate);
-            $scores = $user->quest_scores;
             foreach ($categories as $category) {
 //                $categoryDif = $category->time / $diffInMinutes;
                 if ($category->time <= $diffInMinutes) {

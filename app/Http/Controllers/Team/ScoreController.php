@@ -17,8 +17,10 @@ class ScoreController extends Controller
         $team_id=$user_auth->team_id;
         if($team_id) {
             $user_team = Team::where('id', $user_auth->team_id)->first();
+            $creator = User::where('id', $user_team->creator_id)->first();
             $data['scores'] = $user_team->scores;
             $data['title'] = $user_team->title;
+            $data['photo'] = $creator->photo;
             $teams = Team::orderBy('scores', 'DESC')->get();
 
             $index = $teams->search(function ($team) use ($team_id) {
