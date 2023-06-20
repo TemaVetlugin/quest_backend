@@ -23,21 +23,39 @@ class UpdateController extends Controller
         $categoriesData = $request->input('categories');
 
         $data = json_decode($tasksData, true);
-        $tasksDeleteId = $data[0]->quest_id;
+        $tasksDeleteId = $data[0]['quest_id'];
         $tasksDelete = DB::table('tasks')
             ->where('quest_id', $tasksDeleteId)->get();
 
         foreach ($tasksDelete as $taskDelete) {
             if ($taskDelete->file) {
                 if (Storage::disk('public')->exists($taskDelete['file'])) {
+                    $delete = 1;
                     // Удаляем файл
-                    Storage::disk('public')->delete($taskDelete['file']);
+                    foreach($data as $task){
+
+                        if($taskDelete['file']==$task['file']){
+                            $delete=0;
+                        }
+                    }
+                    if($delete){
+                        Storage::disk('public')->delete($taskDelete['file']);
+                    }
                 }
             }
             if ($taskDelete->file_qr) {
                 if (Storage::disk('public')->exists($taskDelete['file_qr'])) {
+                    $delete_qr = 1;
                     // Удаляем файл
-                    Storage::disk('public')->delete($taskDelete['file_qr']);
+                    foreach($data as $task){
+
+                        if($taskDelete['file_qr']==$task['file_qr']){
+                            $delete_qr=0;
+                        }
+                    }
+                    if($delete_qr){
+                        Storage::disk('public')->delete($taskDelete['file_qr']);
+                    }
                 }
             }
             DB::table('categories')
@@ -66,11 +84,15 @@ class UpdateController extends Controller
 
         foreach ($data as $taskData) {
 //                $data = $taskData;
-            if (array_key_exists($i, $file_to_task)) {
-                $taskData['file'] = $file_to_task[$i];
+            if (is_file($taskData['file'])) {
+                if ($taskData['file']->isValid()) {
+                    $taskData['file'] = Storage::disk('public')->put('/tasks', $taskData['file']);
+                }
             }
-            if (array_key_exists($i, $fileQr_to_task)) {
-                $taskData['file_qr'] = $fileQr_to_task[$i];
+            if (is_file($taskData['file_qr'])) {
+                if ($taskData['file_qr']->isValid()) {
+                    $taskData['file_qr'] = Storage::disk('public')->put('/tasks', $taskData['file_qr']);
+                }
             }
             if(!isset($taskData['key'])) {
                 for ($k = 0; $k < 5; $k++) {

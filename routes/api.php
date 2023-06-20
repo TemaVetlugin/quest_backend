@@ -64,6 +64,7 @@ Route::group([
 //            Route::get('/', 'IndexController');
             Route::post('/', 'StoreController');
             Route::get('/{task}/edit', 'EditController');
+            Route::post('/quest_id', 'QuestIdController');
             Route::post('/update', 'UpdateController');
         });
         Route::group(['namespace'=>'Category', 'prefix'=>'categories'], function(){
