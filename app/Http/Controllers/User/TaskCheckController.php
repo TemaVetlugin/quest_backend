@@ -18,8 +18,13 @@ class TaskCheckController extends Controller
         $user = auth()->user();
         $task = Task::where('key', $task_key)->first();
         if ($user->task_id == $task_key) {
-            $message = 'Задание доступно';
-            $user->update(['started_at'=>now()]);
+            if($user->started_at==null) {
+                $user->update(['started_at' => now()]);
+            }
+            else{
+                $message = 'Вы уже начали это задание';
+                return response($message, Response::HTTP_OK);
+            }
         } else {
             $message = 'Вы еще не разблокировали это задание';
             return response($message, Response::HTTP_OK);

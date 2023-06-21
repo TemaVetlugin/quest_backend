@@ -21,7 +21,13 @@ class TaskCheckController extends Controller
         $task = Task::where('key', $task_key)->first();
         if ($user->task_id == $task_key) {
             if($team->creator_id==$user->id){
-                $team->update(['started_at'=>now()]);
+                if($team->started_at==null) {
+                    $team->update(['started_at' => now()]);
+                }
+                else{
+                    $message = 'Вы уже начали это задание';
+                    return response($message, Response::HTTP_OK);
+                }
             }
             else{
                 $message = 'Вы не являетесь капитаном команды';

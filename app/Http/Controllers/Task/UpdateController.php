@@ -66,20 +66,6 @@ class UpdateController extends Controller
                 ->delete();
         }
 
-        if ($request->file('files')) {
-            foreach ($request->file('files') as $index => $file) {
-                if ($file->isValid()) {
-                    $file_to_task[$index] = Storage::disk('public')->put('/tasks', $file);
-                }
-            }
-        }
-        if ($request->file('files_qr')) {
-            foreach ($request->file('files_qr') as $index => $file) {
-                if ($file->isValid()) {
-                    $fileQr_to_task[$index] = Storage::disk('public')->put('/tasks', $file);
-                }
-            }
-        }
 //        dd($file_to_task)
 
         foreach ($data as $taskData) {

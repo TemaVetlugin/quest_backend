@@ -122,6 +122,11 @@ Route::group([
                 Route::post('/done', 'QuestDoneController');
                 Route::get('/cancel/{quest}', 'QuestCancelController');
             });
+
+            Route::group([ 'prefix'=>'hint'], function(){
+                Route::post('/', 'HintUseController');
+//                Route::get('/cancel/{quest}', 'QuestCancelController');
+            });
         });
 
         Route::group(['namespace'=>'Admin', 'prefix'=>'admin'], function(){
