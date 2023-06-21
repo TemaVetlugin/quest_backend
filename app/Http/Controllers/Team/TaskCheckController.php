@@ -24,10 +24,6 @@ class TaskCheckController extends Controller
                 if($team->started_at==null) {
                     $team->update(['started_at' => now()]);
                 }
-                else{
-                    $message = 'Вы уже начали это задание';
-                    return response($message, Response::HTTP_OK);
-                }
             }
             else{
                 $message = 'Вы не являетесь капитаном команды';

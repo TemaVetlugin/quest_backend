@@ -116,6 +116,7 @@ Route::group([
             Route::get('/{team}', 'ShowController');
             Route::get('admin/{team}', 'AdminController');
             Route::post('/add', 'AddController');
+            Route::get('/started_at', 'StartedController');
 
             Route::group(['namespace'=>'Quest', 'prefix'=>'quest'], function(){
                 Route::get('/{quest}', 'QuestShowController');
