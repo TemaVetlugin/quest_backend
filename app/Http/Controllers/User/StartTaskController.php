@@ -36,6 +36,7 @@ class StartTaskController extends Controller
 //            dd($scores);
             $data['quest_scores'] = $scores;
             $data['hints'] =0;
+            $data['started_at'] =null;
             if($task_key==null){
                 $data['task_id']=null;
                 $user->update($data);
