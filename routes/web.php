@@ -20,4 +20,4 @@ Auth::routes();
 Route::get('/google', 'App\Http\Controllers\GoogleController@redirectToGoogle');
 Route::get('/google/callback', 'App\Http\Controllers\GoogleController@handleGoogleCallback');
 Route::get('/', 'App\Http\Controllers\IndexController')->where('page', '.*');
-//Route::get('{page}', 'App\Http\Controllers\IndexController')->where('page', '.*');
+Route::get('{page}', 'App\Http\Controllers\IndexController')->where('page', '.*');

@@ -29,32 +29,32 @@ class UpdateController extends Controller
 
         foreach ($tasksDelete as $taskDelete) {
             if ($taskDelete->file) {
-                if (Storage::disk('public')->exists($taskDelete['file'])) {
+                if (Storage::disk('public')->exists($taskDelete->file)) {
                     $delete = 1;
                     // Удаляем файл
                     foreach($data as $task){
 
-                        if($taskDelete['file']==$task['file']){
+                        if($taskDelete->file==$task['file']){
                             $delete=0;
                         }
                     }
                     if($delete){
-                        Storage::disk('public')->delete($taskDelete['file']);
+                        Storage::disk('public')->delete($taskDelete->file);
                     }
                 }
             }
             if ($taskDelete->file_qr) {
-                if (Storage::disk('public')->exists($taskDelete['file_qr'])) {
+                if (Storage::disk('public')->exists($taskDelete->file_qr)) {
                     $delete_qr = 1;
                     // Удаляем файл
                     foreach($data as $task){
 
-                        if($taskDelete['file_qr']==$task['file_qr']){
+                        if($taskDelete->file_qr==$task['file_qr']){
                             $delete_qr=0;
                         }
                     }
                     if($delete_qr){
-                        Storage::disk('public')->delete($taskDelete['file_qr']);
+                        Storage::disk('public')->delete($taskDelete->file_qr);
                     }
                 }
             }
