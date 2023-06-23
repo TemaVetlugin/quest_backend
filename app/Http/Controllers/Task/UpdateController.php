@@ -32,13 +32,14 @@ class UpdateController extends Controller
                 if (Storage::disk('public')->exists($taskDelete->file)) {
                     $delete = 1;
                     // Удаляем файл
-                    foreach($data as $task){
-
-                        if($taskDelete->file==$task['file']){
-                            $delete=0;
+                    foreach ($data as $task) {
+                        if (isset($task['file'])) {
+                            if ($taskDelete->file == $task['file']) {
+                                $delete = 0;
+                            }
                         }
                     }
-                    if($delete){
+                    if ($delete) {
                         Storage::disk('public')->delete($taskDelete->file);
                     }
                 }
@@ -47,13 +48,14 @@ class UpdateController extends Controller
                 if (Storage::disk('public')->exists($taskDelete->file_qr)) {
                     $delete_qr = 1;
                     // Удаляем файл
-                    foreach($data as $task){
-
-                        if($taskDelete->file_qr==$task['file_qr']){
-                            $delete_qr=0;
+                    foreach ($data as $task) {
+                        if (isset($task['file_qr'])) {
+                            if ($taskDelete->file_qr == $task['file_qr']) {
+                                $delete_qr = 0;
+                            }
                         }
                     }
-                    if($delete_qr){
+                    if ($delete_qr) {
                         Storage::disk('public')->delete($taskDelete->file_qr);
                     }
                 }
@@ -70,14 +72,14 @@ class UpdateController extends Controller
 
         foreach ($data as $taskData) {
 //                $data = $taskData;
-            if(isset($taskData['file'])) {
+            if (isset($taskData['file'])) {
                 if (is_file($taskData['file'])) {
                     if ($taskData['file']->isValid()) {
                         $taskData['file'] = Storage::disk('public')->put('/tasks', $taskData['file']);
                     }
                 }
             }
-            if(isset($taskData['file_qr'])) {
+            if (isset($taskData['file_qr'])) {
                 if (is_file($taskData['file_qr'])) {
                     if ($taskData['file_qr']->isValid()) {
                         $taskData['file_qr'] = Storage::disk('public')->put('/tasks', $taskData['file_qr']);
@@ -85,7 +87,7 @@ class UpdateController extends Controller
                 }
             }
 
-            if(!isset($taskData['key'])) {
+            if (!isset($taskData['key'])) {
                 for ($k = 0; $k < 5; $k++) {
                     $key = Str::random(4);
                     $key_exists = Task::where('key', $key)->first();
