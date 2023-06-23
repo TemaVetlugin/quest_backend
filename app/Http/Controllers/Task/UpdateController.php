@@ -15,7 +15,7 @@ class UpdateController extends Controller
 {
     public function __invoke(Request $request)
     {
-        return $request->all();
+
         $i = 0;
         $file_to_task = [];
         $fileQr_to_task = [];
@@ -70,61 +70,67 @@ class UpdateController extends Controller
             ->where('quest_id', $tasksDeleteId)
             ->delete();
 
-//        dd($file_to_task)
 
-        foreach ($data as $taskData) {
+        if ($request->file('files')) {
+            foreach ($request->file('files') as $index => $file) {
+                if ($file->isValid()) {
+                    $file_to_task[$index] = Storage::disk('public')->put('/tasks', $file);
+                }
+            }
+        }
+        if ($request->file('files_qr')) {
+            foreach ($request->file('files_qr') as $index => $file) {
+                if ($file->isValid()) {
+                    $fileQr_to_task[$index] = Storage::disk('public')->put('/tasks', $file);
+                }
+            }
+        }
+//        dd($file_to_task);
+        if ($tasksData) {
+            $data = $tasksData;
+            foreach ($data as $taskData) {
 //                $data = $taskData;
-            if (isset($taskData['file'])) {
-                $ret['before'] = $taskData['file'];
-                if (is_string($taskData['file'])&&$taskData['file']) {
-                    if ($taskData['file']->isValid()) {
-                        $temp = Storage::disk('public')->put('/tasks', $taskData['file']);
-                        $taskData['file']=$temp;
+                if (array_key_exists($i, $file_to_task)) {
+                    $taskData['file'] = $file_to_task[$i];
+                }
+                if (array_key_exists($i, $fileQr_to_task)) {
+                    $taskData['file_qr'] = $fileQr_to_task[$i];
+                }
+                if(!isset($taskData['key'])) {
+                    for ($k = 0; $k < 5; $k++) {
+                        $key = Str::random(4);
+                        $key_exists = Task::where('key', $key)->first();
+                        if ($key_exists) {
+                            $k = 0;
+                        } else {
+                            $k = 5;
+                            $taskData['key'] = $key;
+                        }
                     }
                 }
-                $ret['after']=$taskData['file'];
-                return $ret;
-            }
-            if (isset($taskData['file_qr'])&&$taskData['file_qr']) {
-                if (!is_string($taskData['file_qr'])) {
-                    if ($taskData['file_qr']->isValid()) {
-                        $taskData['file_qr'] = Storage::disk('public')->put('/tasks', $taskData['file_qr']);
-                    }
-                }
-            }
+                $new_task = Task::create($taskData);
 
-            if (!isset($taskData['key'])) {
-                for ($k = 0; $k < 5; $k++) {
-                    $key = Str::random(4);
-                    $key_exists = Task::where('key', $key)->first();
-                    if ($key_exists) {
-                        $k = 0;
-                    } else {
-                        $k = 5;
-                        $taskData['key'] = $key;
-                    }
-                }
-            }
-            $new_task = Task::create($taskData);
-
-            $data = $categoriesData;
-            foreach ($data as $categoryData) {
+                $data = $categoriesData;
+                foreach ($data as $categoryData) {
 //                    $data = $categoryData;
-                if ($categoryData['task_id'] == $i) {
+                    if($categoryData['task_id']==$i){
 //                        dd($i);
-                    $categoryData['task_id'] = $new_task->id;
-                    $new_category = Category::create($categoryData);
+                        $categoryData['task_id']=$new_task->id;
+                        $new_category=Category::create($categoryData);
+                    }
                 }
-            }
 
 
 //                $task_ids[$i] = $new_task->id;
-            $i++;
+                $i++;
+            }
         }
-
 
 //        $data['task_ids']=$task_ids;
 
         return response('Задания обновлены', Response::HTTP_OK);
     }
+
 }
+
+
