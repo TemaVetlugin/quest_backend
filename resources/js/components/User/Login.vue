@@ -34,15 +34,10 @@ loginGoogle(){
     window.location.href = '/google'
 },
 loginGoogleTest(){
-    var data={email: "s.fedoseev813@gmail.com",
-        email_verified: true,
-        family_name: "Fedoseev",
-        given_name: "Sergey",
-        locale: "ru",
-        name: "Sergey Fedoseev",
-        picture: "https://lh3.googleusercontent.com/a/AGNmyxbs9nbfUIDam3ltY1TC3i2NtPTQQFplYSjh1-CI=s96-c",
-        sub: "105184527130561993514"}
-    axios.post('/api/auth/google/login', data)
+    axios.post('/api/auth/email', {id: 2357})
+        .then(res=>{
+            console.log(res);
+        })
 }
 }
 

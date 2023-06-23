@@ -19,12 +19,20 @@ class EmailAuthController extends Controller
         $secret_id/=6;
         $secret_id-=410;
         $id = sqrt($secret_id);
+        $id = intval($id);
+//        dd($id);
 //        dd($user);
         $user_exists  = User::where('id', $id)->first();
-        if ($user_exists && $user_exists->access===0) {
+        $old_password=$user_exists['password'];
+//        dd($old_password);
+
+//        dd($user_exists);
+        if ($user_exists && $user_exists->access!==0) {
+            $user_exists->update(['password'=>bcrypt('youshouldchangethepassword')]);
             $credentials['email'] = $user_exists['email'];
-            $credentials['password'] = $user_exists['[password]'];
+            $credentials['password'] = 'youshouldchangethepassword';
             $token = auth()->attempt($credentials);
+            $user_exists->update(['password'=>$old_password]);
             return  $token;
 
         }
