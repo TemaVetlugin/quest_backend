@@ -17,6 +17,7 @@ class LinkController extends Controller
         $secret_id=$user->id*$user->id+410;
         $secret_id*=6;
         $secret_id-=199;
+        $secret_id*=3;
         $link = 'https://domain/' . $secret_id;
         return $link;
         Mail::send('emails.link', ['link' => $link], function($message) use ($email) {

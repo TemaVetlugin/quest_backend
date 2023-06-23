@@ -15,7 +15,7 @@ class EmailAuthController extends Controller
     {
 
         $user = request()->input();
-        $secret_id=$user['id']+199;
+        $secret_id=$user['id']/3+199;
         $secret_id/=6;
         $secret_id-=410;
         $id = sqrt($secret_id);
