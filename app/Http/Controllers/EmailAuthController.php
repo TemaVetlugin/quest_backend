@@ -15,8 +15,12 @@ class EmailAuthController extends Controller
     {
 
         $user = request()->input();
+        $secret_id=$user['id']+199;
+        $secret_id/=6;
+        $secret_id-=410;
+        $id = sqrt($secret_id);
 //        dd($user);
-        $user_exists  = User::where('id', $user['id'])->first();
+        $user_exists  = User::where('id', $id)->first();
         if ($user_exists && $user_exists->access===0) {
             $credentials['email'] = $user_exists['email'];
             $credentials['password'] = $user_exists['[password]'];
