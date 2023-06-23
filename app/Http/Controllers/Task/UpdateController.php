@@ -15,6 +15,7 @@ class UpdateController extends Controller
 {
     public function __invoke(Request $request)
     {
+        return $request->all();
         $i = 0;
         $file_to_task = [];
         $fileQr_to_task = [];
@@ -75,7 +76,7 @@ class UpdateController extends Controller
 //                $data = $taskData;
             if (isset($taskData['file'])) {
                 $ret['before'] = $taskData['file'];
-                if (!is_string($taskData['file'])&&$taskData['file']) {
+                if (is_string($taskData['file'])&&$taskData['file']) {
                     if ($taskData['file']->isValid()) {
                         $temp = Storage::disk('public')->put('/tasks', $taskData['file']);
                         $taskData['file']=$temp;
