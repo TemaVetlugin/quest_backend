@@ -70,16 +70,21 @@ class UpdateController extends Controller
 
         foreach ($data as $taskData) {
 //                $data = $taskData;
-            if (is_file($taskData['file'])) {
-                if ($taskData['file']->isValid()) {
-                    $taskData['file'] = Storage::disk('public')->put('/tasks', $taskData['file']);
+            if(isset($taskData['file'])) {
+                if (is_file($taskData['file'])) {
+                    if ($taskData['file']->isValid()) {
+                        $taskData['file'] = Storage::disk('public')->put('/tasks', $taskData['file']);
+                    }
                 }
             }
-            if (is_file($taskData['file_qr'])) {
-                if ($taskData['file_qr']->isValid()) {
-                    $taskData['file_qr'] = Storage::disk('public')->put('/tasks', $taskData['file_qr']);
+            if(isset($taskData['file_qr'])) {
+                if (is_file($taskData['file_qr'])) {
+                    if ($taskData['file_qr']->isValid()) {
+                        $taskData['file_qr'] = Storage::disk('public')->put('/tasks', $taskData['file_qr']);
+                    }
                 }
             }
+
             if(!isset($taskData['key'])) {
                 for ($k = 0; $k < 5; $k++) {
                     $key = Str::random(4);
