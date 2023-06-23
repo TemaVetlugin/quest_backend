@@ -74,11 +74,15 @@ class UpdateController extends Controller
         foreach ($data as $taskData) {
 //                $data = $taskData;
             if (isset($taskData['file'])) {
+                $ret['before'] = $taskData['file'];
                 if (!is_string($taskData['file'])&&$taskData['file']) {
                     if ($taskData['file']->isValid()) {
-                        $taskData['file'] = Storage::disk('public')->put('/tasks', $taskData['file']);
+                        $temp = Storage::disk('public')->put('/tasks', $taskData['file']);
+                        $taskData['file']=$temp;
                     }
                 }
+                $ret['after']=$taskData['file'];
+                return $ret;
             }
             if (isset($taskData['file_qr'])&&$taskData['file_qr']) {
                 if (!is_string($taskData['file_qr'])) {

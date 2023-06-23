@@ -162,10 +162,77 @@ export default {
             // var jsonString = JSON.stringify(data);
 
             // const data = new FormData();
-            const data = "tasks: [{\"quest_id\":1,\"address\":\"ффыва\",\"time\":\"15\",\"title\":\"фывафы\",\"text\":\"фывафы\",\"hint1\":\"фывафыв\",\"hint2\":\"15\",\"hint3\":\"ыфвафы\",\"hint1_time\":\"15\",\"hint2_time\":\"15\",\"hint3_time\":\"15\",\"hint1_scores\":15,\"hint2_scores\":15,\"hint3_scores\":15,\"qr\":\"NaN\",\"key\":\"Je4w\",\"title_qr\":null,\"address_qr\":null,\"answer\":\"32\",\"scores\":15},{\"quest_id\":2,\"address\":\"фыва\",\"time\":\"15\",\"title\":\"ыфва\",\"text\":\"фыва\",\"hint1\":\"ыфвафыв\",\"hint2\":\"фывафы\",\"hint3\":\"фывафы\",\"hint1_time\":\"15\",\"hint2_time\":\"15\",\"hint3_time\":\"15\",\"hint1_scores\":15,\"hint2_scores\":15,\"hint3_scores\":15,\"qr\":\"1\",\"key\":\"tJZ6\",\"title_qr\":\"ыфв\",\"address_qr\":\"афыва\",\"answer\":\"32\",\"scores\":15}]\n" +
-
-                "categories: [{\"id\":8,\"task_id\":0,\"time\":\"10\",\"scores\":10,\"created_at\":\"2023-06-19T14:48:50.000000Z\",\"updated_at\":\"2023-06-19T14:48:50.000000Z\"},{\"id\":9,\"task_id\":0,\"time\":\"20\",\"scores\":20,\"created_at\":\"2023-06-19T14:48:50.000000Z\",\"updated_at\":\"2023-06-19T14:48:50.000000Z\"},{\"id\":10,\"task_id\":0,\"time\":\"30\",\"scores\":30,\"created_at\":\"2023-06-19T14:48:50.000000Z\",\"updated_at\":\"2023-06-19T14:48:50.000000Z\"},{\"id\":11,\"task_id\":0,\"time\":\"40\",\"scores\":40,\"created_at\":\"2023-06-19T14:48:50.000000Z\",\"updated_at\":\"2023-06-19T14:48:50.000000Z\"},{\"id\":12,\"task_id\":0,\"time\":\"50\",\"scores\":50,\"created_at\":\"2023-06-19T14:48:50.000000Z\",\"updated_at\":\"2023-06-19T14:48:50.000000Z\"},{\"id\":13,\"task_id\":1,\"time\":\"10\",\"scores\":10,\"created_at\":\"2023-06-19T14:48:50.000000Z\",\"updated_at\":\"2023-06-19T14:48:50.000000Z\"},{\"id\":14,\"task_id\":1,\"time\":\"20\",\"scores\":20,\"created_at\":\"2023-06-19T14:48:50.000000Z\",\"updated_at\":\"2023-06-19T14:48:50.000000Z\"},{\"id\":15,\"task_id\":1,\"time\":\"30\",\"scores\":30,\"created_at\":\"2023-06-19T14:48:50.000000Z\",\"updated_at\":\"2023-06-19T14:48:50.000000Z\"},{\"id\":16,\"task_id\":1,\"time\":\"40\",\"scores\":40,\"created_at\":\"2023-06-19T14:48:50.000000Z\",\"updated_at\":\"2023-06-19T14:48:50.000000Z\"},{\"id\":17,\"task_id\":1,\"time\":\"50\",\"scores\":50,\"created_at\":\"2023-06-19T14:48:50.000000Z\",\"updated_at\":\"2023-06-19T14:48:50.000000Z\"}]";
-            api.get('/api/auth/teams/started_at/')
+            const data={
+                "tasks": [
+                    {
+                        "quest_id": 1,
+                        "address": "TEXT",
+                        "time": 30,
+                        "title": "TEXT",
+                        "text": "TEXT",
+                        "hint1": "TEXT",
+                        "hint2": "TEXT",
+                        "hint3": "TEXT",
+                        "hint1_time": 1,
+                        "hint2_time": 5,
+                        "hint3_time": 10,
+                        "hint1_scores": 50,
+                        "hint2_scores": 100,
+                        "hint3_scores": 200,
+                        "qr": 1,
+                        "key": "GmCC",
+                        "title_qr": "TEXT",
+                        "address_qr": "TEXT",
+                        "answer": 1,
+                        "scores": 500,
+                        "file": this.photo,
+                        "file_qr": null
+                    }
+                ],
+                "categories": [
+                    {
+                        "id": 53,
+                        "task_id": 0,
+                        "time": 10,
+                        "scores": 10,
+                        "created_at": "2023-06-23T10:13:57.000000Z",
+                        "updated_at": "2023-06-23T10:13:57.000000Z"
+                    },
+                    {
+                        "id": 54,
+                        "task_id": 0,
+                        "time": 20,
+                        "scores": 20,
+                        "created_at": "2023-06-23T10:13:57.000000Z",
+                        "updated_at": "2023-06-23T10:13:57.000000Z"
+                    },
+                    {
+                        "id": 55,
+                        "task_id": 0,
+                        "time": 30,
+                        "scores": 30,
+                        "created_at": "2023-06-23T10:13:57.000000Z",
+                        "updated_at": "2023-06-23T10:13:57.000000Z"
+                    },
+                    {
+                        "id": 56,
+                        "task_id": 0,
+                        "time": 40,
+                        "scores": 40,
+                        "created_at": "2023-06-23T10:13:57.000000Z",
+                        "updated_at": "2023-06-23T10:13:57.000000Z"
+                    },
+                    {
+                        "id": 57,
+                        "task_id": 0,
+                        "time": 50,
+                        "scores": 50,
+                        "created_at": "2023-06-23T10:13:57.000000Z",
+                        "updated_at": "2023-06-23T10:13:57.000000Z"
+                    }
+                ]
+            }
+            api.post('/api/auth/tasks/update/', data)
                 .then(res => {
                     console.log(res);
                 })
