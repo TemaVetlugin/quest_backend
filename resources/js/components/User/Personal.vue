@@ -164,6 +164,9 @@ export default {
             // const data = new FormData();
             const data={
                 "tasks": [
+
+                    {},
+                    {},
                     {
                         "quest_id": 1,
                         "address": "TEXT",
@@ -187,7 +190,7 @@ export default {
                         "scores": 500,
                         "file": this.photo,
                         "file_qr": null
-                    }
+                    },
                 ],
                 "categories": [
                     {

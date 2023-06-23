@@ -15,7 +15,7 @@ class UpdateController extends Controller
 {
     public function __invoke(Request $request)
     {
-
+        dd($request->all());
         $i = 0;
         $file_to_task = [];
         $fileQr_to_task = [];

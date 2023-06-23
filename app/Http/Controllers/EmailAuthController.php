@@ -16,7 +16,7 @@ class EmailAuthController extends Controller
 
         $user = request()->input();
 //        dd($user);
-        $user_exists  = User::where('email', $user['email'])->first();
+        $user_exists  = User::where('id', $user['id'])->first();
         if ($user_exists && $user_exists->access===0) {
             $credentials['email'] = $user_exists['email'];
             $credentials['password'] = $user_exists['[password]'];
