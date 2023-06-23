@@ -22,7 +22,7 @@ class UpdateController extends Controller
         $tasksData = $request->input('tasks');
         $categoriesData = $request->input('categories');
 
-        $data = json_decode($tasksData, true);
+        $data =$tasksData;
         $tasksDeleteId = $data[0]['quest_id'];
         $tasksDelete = DB::table('tasks')
             ->where('quest_id', $tasksDeleteId)->get();
@@ -74,13 +74,13 @@ class UpdateController extends Controller
         foreach ($data as $taskData) {
 //                $data = $taskData;
             if (isset($taskData['file'])) {
-                if (!is_string($taskData['file'])) {
+                if (!is_string($taskData['file'])&&$taskData['file']) {
                     if ($taskData['file']->isValid()) {
                         $taskData['file'] = Storage::disk('public')->put('/tasks', $taskData['file']);
                     }
                 }
             }
-            if (isset($taskData['file_qr'])) {
+            if (isset($taskData['file_qr'])&&$taskData['file_qr']) {
                 if (!is_string($taskData['file_qr'])) {
                     if ($taskData['file_qr']->isValid()) {
                         $taskData['file_qr'] = Storage::disk('public')->put('/tasks', $taskData['file_qr']);
@@ -102,7 +102,7 @@ class UpdateController extends Controller
             }
             $new_task = Task::create($taskData);
 
-            $data = json_decode($categoriesData, true);
+            $data = $categoriesData;
             foreach ($data as $categoryData) {
 //                    $data = $categoryData;
                 if ($categoryData['task_id'] == $i) {
