@@ -63,10 +63,11 @@ class UpdateController extends Controller
             DB::table('categories')
                 ->where('task_id', $taskDelete->id)
                 ->delete();
-            DB::table('tasks')
-                ->where('quest_id', $tasksDeleteId)
-                ->delete();
+
         }
+        DB::table('tasks')
+            ->where('quest_id', $tasksDeleteId)
+            ->delete();
 
 //        dd($file_to_task)
 
